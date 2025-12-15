@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moe - Pixel Artist & Web3 Creator</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Moe | Pixel Artist & Web3 Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Modern CSS Reset & Variables */
         * {
             margin: 0;
             padding: 0;
@@ -16,27 +14,28 @@
         }
         
         :root {
-            --primary-color: #6C63FF;
-            --secondary-color: #FF6584;
-            --dark-bg: #0A0A14;
-            --card-bg: #161622;
-            --light-text: #F5F5F7;
-            --gray-text: #8A8A9A;
-            --accent-color: #36D1DC;
+            --primary: #6C63FF;
+            --primary-dark: #554FD8;
+            --secondary: #FF6B8B;
+            --dark: #121212;
+            --dark-light: #1E1E1E;
+            --light: #F8F9FA;
+            --gray: #888;
+            --gray-light: #E0E0E0;
+            --accent: #36D1DC;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            --font-heading: 'Poppins', var(--font-main);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+            font-family: var(--font-main);
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
         }
         
         .container {
@@ -45,157 +44,149 @@
             padding: 0 20px;
         }
         
-        /* Header */
-        header {
-            padding: 25px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(10, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
             font-weight: 700;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-decoration: none;
         }
         
-        .nav-links {
-            display: flex;
-            gap: 30px;
+        h2 {
+            font-size: 2.5rem;
+            color: var(--light);
         }
         
-        .nav-links a {
-            color: var(--light-text);
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--gray-light);
+        }
+        
+        a {
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
             transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        /* Header */
+        header {
+            padding: 3rem 0 2rem;
             position: relative;
+            z-index: 10;
         }
         
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--light);
         }
         
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
+        .logo span {
+            color: var(--primary);
         }
         
         /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
+            padding: 2rem 0 4rem;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .profile-images {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                        linear-gradient(45deg, var(--primary), var(--accent)) border-box;
+            transition: var(--transition);
+        }
+        
+        .profile-img:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Art Slideshow */
+        .slideshow-container {
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+        }
+        
+        .slideshow-track {
+            display: flex;
             position: absolute;
-            top: 0;
             left: 0;
+            height: 100%;
+            align-items: center;
+            animation: slideLeft 40s linear infinite;
+        }
+        
+        .slide {
+            height: 220px;
+            width: 220px;
+            margin: 0 15px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .slide:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+        }
+        
+        .slide img {
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 40%);
-            z-index: -1;
+            object-fit: cover;
+            border-radius: 12px;
         }
         
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--primary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray-text);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-        
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        /* Slideshow */
-        .slideshow-container {
-            margin: 60px auto;
-            max-width: 100%;
-            overflow: hidden;
-            position: relative;
-            height: 300px;
-            border-radius: 16px;
-            background-color: rgba(22, 22, 34, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-        
-        .slideshow {
-            display: flex;
-            width: 200%;
-            height: 100%;
-            animation: scrollLeft 60s linear infinite;
-        }
-        
-        .slideshow:hover {
-            animation-play-state: paused;
-        }
-        
-        .slide-item {
-            flex: 0 0 auto;
-            width: 200px;
-            height: 100%;
-            margin: 0 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .slide-item img {
-            max-height: 85%;
-            max-width: 100%;
-            border-radius: 8px;
-            transition: var(--transition);
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
-        }
-        
-        .slide-item img:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 8px 25px rgba(108, 99, 255, 0.3));
-        }
-        
-        @keyframes scrollLeft {
+        @keyframes slideLeft {
             0% {
                 transform: translateX(0);
             }
@@ -204,339 +195,302 @@
             }
         }
         
-        /* About Section */
-        .about {
-            padding: 100px 0;
+        /* Sections */
+        section {
+            padding: 4rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-        
-        .about-content {
             display: flex;
             align-items: center;
-            gap: 60px;
+            margin-bottom: 2.5rem;
         }
         
-        .about-text {
-            flex: 1;
+        .section-title i {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
         
         .about-text p {
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-            color: var(--gray-text);
+            margin-bottom: 1.5rem;
         }
         
-        .profile-images {
-            display: flex;
-            gap: 20px;
-            flex: 0 0 250px;
-            justify-content: center;
-        }
-        
-        .profile-img {
-            width: 115px;
-            height: 115px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
-            transition: var(--transition);
-        }
-        
-        .profile-img:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(54, 209, 220, 0.1));
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin: 2rem 0;
         }
         
         /* Gallery Section */
-        .gallery {
-            padding: 80px 0 100px;
+        .gallery-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
         .gallery-frame {
-            width: 100%;
-            height: 600px;
-            border-radius: 16px;
+            background: var(--dark-light);
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .gallery-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .gallery-frame:hover {
+            transform: translateY(-10px);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+        
+        .gallery-info {
+            padding: 1.5rem;
+        }
+        
+        .gallery-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .gallery-link {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+        
+        .gallery-link:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .gallery-link i {
+            margin-left: 8px;
         }
         
         /* Projects Section */
-        .projects {
-            padding: 100px 0;
-        }
-        
-        .project-cards {
+        .projects-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
         .project-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
+            background: var(--dark-light);
+            border-radius: 15px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow-light);
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(108, 99, 255, 0.2);
+            box-shadow: var(--shadow);
+            border-color: rgba(108, 99, 255, 0.3);
         }
         
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--light-text);
+        .project-card h4 {
+            color: var(--light);
+            margin-bottom: 0.5rem;
         }
         
-        .project-card p {
-            color: var(--gray-text);
-            margin-bottom: 20px;
+        .project-chain {
+            display: inline-block;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
         
-        .project-link {
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .project-links a {
+            font-size: 0.9rem;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
         }
         
-        .project-link:hover {
-            color: var(--accent-color);
-            gap: 12px;
+        .project-links i {
+            margin-right: 5px;
         }
         
         /* Drops Section */
-        .drops {
-            padding: 80px 0 100px;
-        }
-        
-        .drops-grid {
+        .drops-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
         
         .drop-item {
-            background-color: var(--card-bg);
+            background: var(--dark-light);
+            padding: 1.5rem;
             border-radius: 12px;
-            padding: 20px;
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .drop-item:hover {
             transform: translateY(-5px);
-            border-color: rgba(108, 99, 255, 0.2);
+            border-color: rgba(108, 99, 255, 0.3);
         }
         
         .drop-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
         
-        .drop-item p {
+        .drop-platform {
+            color: var(--gray);
             font-size: 0.9rem;
-            color: var(--gray-text);
-            margin-bottom: 15px;
-        }
-        
-        .drop-link {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+            margin-bottom: 0.8rem;
         }
         
         /* Contact Section */
-        .contact {
-            padding: 100px 0 120px;
+        .contact-container {
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
         }
         
-        .contact p {
-            font-size: 1.1rem;
-            color: var(--gray-text);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        .contact-btn {
-            display: inline-block;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+            background: var(--dark-light);
+            border-radius: 15px;
+            width: 150px;
             transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .contact-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
+        .contact-link:hover {
+            transform: translateY(-10px);
+            background: rgba(108, 99, 255, 0.1);
+            border-color: rgba(108, 99, 255, 0.3);
+        }
+        
+        .contact-link i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
         
         /* Footer */
         footer {
-            background-color: #07070E;
-            padding: 60px 0 30px;
+            background: var(--dark-light);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: var(--card-bg);
-            border-radius: 50%;
-            color: var(--light-text);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
         }
         
         .copyright {
-            text-align: center;
-            color: var(--gray-text);
+            color: var(--gray);
             font-size: 0.9rem;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 2rem;
         }
         
         /* Responsive */
         @media (max-width: 992px) {
-            .hero h1 {
+            h1 {
                 font-size: 2.8rem;
             }
             
-            .about-content {
-                flex-direction: column;
-                text-align: center;
+            h2 {
+                font-size: 2rem;
             }
             
-            .profile-images {
-                margin-top: 30px;
-            }
-            
-            .gallery-frame {
-                height: 500px;
+            .about-content, .gallery-container {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .hero {
-                padding: 200px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
             .slideshow-container {
-                height: 250px;
+                height: 220px;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .slide {
+                height: 180px;
+                width: 180px;
             }
             
-            .gallery-frame {
-                height: 400px;
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                gap: 1rem;
+            }
+            
+            .contact-link {
+                width: 130px;
+                padding: 1rem;
             }
         }
         
         @media (max-width: 576px) {
-            .nav-links {
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
+            h1 {
+                font-size: 2.2rem;
             }
             
             .slideshow-container {
-                height: 200px;
+                height: 180px;
             }
             
-            .slide-item {
-                width: 160px;
-            }
-            
-            .project-cards, .drops-grid {
-                grid-template-columns: 1fr;
+            .slide {
+                height: 150px;
+                width: 150px;
             }
             
             .profile-images {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .drops-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -544,171 +498,206 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container header-content">
-            <a href="#" class="logo">MOE</a>
-            <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#projects">Projects</a>
-                <a href="#drops">Drops</a>
-                <a href="#contact">Contact</a>
-            </nav>
+        <div class="container">
+            <div class="logo">MOE<span>.</span></div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Pixel Artist &<br>Web3 Creator</h1>
-            <p>Transforming ideas into distinctive <span class="highlight">pixel-based visuals</span> that feel alive, collectible, and timeless. Specializing in animated and static pixel art for NFT projects and digital identities.</p>
-            
-            <!-- Slideshow -->
-            <div class="slideshow-container">
-                <div class="slideshow" id="artSlideshow">
-                    <!-- Slides will be populated by JavaScript -->
-                </div>
+            <div class="profile-images">
+                <img src="https://cloudflare-ipfs.com/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="Moe" class="profile-img">
+                <img src="https://cloudflare-ipfs.com/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" alt="Moe" class="profile-img">
+            </div>
+            <div class="hero-content">
+                <h1>Moe</h1>
+                <p class="tagline">Pixel Artist & Web3 Creator</p>
+                <p>I specialize in animated and static pixel art for NFT projects and digital identities. My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
             </div>
         </div>
     </section>
 
+    <!-- Art Slideshow -->
+    <div class="container">
+        <div class="slideshow-container">
+            <div class="slideshow-track" id="slideshowTrack">
+                <!-- Slides will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
     <!-- About Section -->
-    <section class="about" id="about">
+    <section id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <div class="section-title">
+                <i class="fas fa-user"></i>
+                <h2>About Me</h2>
+            </div>
             <div class="about-content">
                 <div class="about-text">
                     <p>I am Moe, a pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities. My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
-                    <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype. Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
-                    <p>Pixel art is not just a style to me; it's a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
+                    <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype.</p>
+                    <div class="highlight-box">
+                        <p>Pixel art is not just a style to me; it's a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
+                    </div>
+                    <p>Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
                 </div>
-                <div class="profile-images">
-                    <img src="https://ipfs.io/ipfs/bafkreiehyjlk2yyewbj6lyt6sis75js2rw7tmt6mpwe2k6qonrf6waqzdu" alt="Moe" class="profile-img">
-                    <img src="https://ipfs.io/ipfs/bafkreicrxvq4wdwxdqzf53ldymbqf7b77jn6i742mmnnyhivc4jokgqvpi" alt="Moe" class="profile-img">
+                <div class="about-text">
+                    <h3>Current Project</h3>
+                    <p><strong>Based Moer</strong> - Building on Base blockchain</p>
+                    <div style="margin-top: 1rem; text-align: center;">
+                        <img src="https://cloudflare-ipfs.com/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer" style="width: 100%; max-width: 300px; border-radius: 10px; margin: 0 auto;">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
+    <section id="gallery">
         <div class="container">
-            <h2 class="section-title">Oncyber Gallery</h2>
-            <div class="gallery-frame">
-                <iframe src="https://oncyber.io/moegallery" title="Oncyber Gallery" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="section-title">
+                <i class="fas fa-images"></i>
+                <h2>Gallery</h2>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-frame">
+                    <div class="gallery-info">
+                        <h3>Oncyber Gallery</h3>
+                        <p>Explore my curated collection of pixel art in an immersive 3D gallery experience.</p>
+                        <a href="https://oncyber.io/moegallery" target="_blank" class="gallery-link">
+                            Visit Gallery <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-frame">
+                    <div class="gallery-info">
+                        <h3>My PFP</h3>
+                        <p>This is my personal pixel art profile picture, representing my artistic identity.</p>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <img src="https://cloudflare-ipfs.com/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe's PFP" style="width: 120px; height: 120px; border-radius: 10px;">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects">
+    <section id="projects">
         <div class="container">
-            <h2 class="section-title">Current Projects</h2>
-            <div class="project-cards">
+            <div class="section-title">
+                <i class="fas fa-code-branch"></i>
+                <h2>Projects & Collaborations</h2>
+            </div>
+            <div class="projects-container">
                 <div class="project-card">
-                    <h3>Based Moer</h3>
-                    <p>Currently building the Based Moer project on Base blockchain. A pixel art collection with unique on-chain utility and community-driven development.</p>
-                    <a href="#" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+                    <h4>MOER87 on DR!P Haus</h4>
+                    <span class="project-chain">Solana</span>
+                    <p>Exclusive pixel art drops on the DR!P Haus platform.</p>
+                    <div class="project-links">
+                        <a href="https://drip.haus/moer87" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
+                    </div>
                 </div>
                 <div class="project-card">
-                    <h3>Pixel Art Systems</h3>
-                    <p>Creating interchangeable art systems for NFT projects that allow for dynamic visual expression and long-term collectible value.</p>
-                    <a href="#" class="project-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <h4>Famous Pixel Dogs</h4>
+                    <span class="project-chain">Polygon</span>
+                    <p>A collection of uniquely designed pixel art dogs with distinct personalities.</p>
+                    <div class="project-links">
+                        <a href="https://opensea.io/collection/famouspixeldogs" target="_blank"><i class="fas fa-external-link-alt"></i> OpenSea</a>
+                    </div>
                 </div>
                 <div class="project-card">
-                    <h3>Web3 Identity</h3>
-                    <p>Developing pixel-based digital identities for Web3 communities, focusing on distinctive visual language and on-chain representation.</p>
-                    <a href="#" class="project-link">Explore <i class="fas fa-arrow-right"></i></a>
+                    <h4>Ape Punks</h4>
+                    <span class="project-chain">Polygon</span>
+                    <p>Pixel art fusion of apes and punks creating unique digital collectibles.</p>
+                    <div class="project-links">
+                        <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank"><i class="fas fa-external-link-alt"></i> OpenSea</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Drops Section -->
-    <section class="drops" id="drops">
+    <section id="drops">
         <div class="container">
-            <h2 class="section-title">Drops & Partnerships</h2>
-            <div class="drops-grid">
+            <div class="section-title">
+                <i class="fas fa-gem"></i>
+                <h2>Drops & Partnerships</h2>
+            </div>
+            <div class="drops-container">
                 <div class="drop-item">
-                    <h4>MOER87 on DR!P Haus</h4>
-                    <p>Solana-based pixel art drops</p>
-                    <a href="https://drip.haus/moer87" target="_blank" class="drop-link">View Drop <i class="fas fa-external-link-alt"></i></a>
+                    <h4>The Herd</h4>
+                    <div class="drop-platform">Polygon</div>
+                    <a href="https://opensea.io/collection/the-herd-4" target="_blank">View Collection</a>
                 </div>
                 <div class="drop-item">
-                    <h4>Famous Pixel Dogs</h4>
-                    <p>Polygon collection of pixel canine companions</p>
-                    <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="drop-link">View Collection <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="drop-item">
-                    <h4>Ape Punks (Polygon)</h4>
-                    <p>Pixel ape collection on Polygon</p>
-                    <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="drop-link">View Collection <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="drop-item">
-                    <h4>The Herd (Polygon)</h4>
-                    <p>Pixel animal collection</p>
-                    <a href="https://opensea.io/collection/the-herd-4" target="_blank" class="drop-link">View Collection <i class="fas fa-external-link-alt"></i></a>
-                </div>
-                <div class="drop-item">
-                    <h4>0xmusic Web3 Domains</h4>
-                    <p>Music-themed domain names on Polygon</p>
-                    <a href="https://freename.io/discover/0xmusic" target="_blank" class="drop-link">Discover <i class="fas fa-external-link-alt"></i></a>
+                    <h4>.0xmusic Web3 Domains</h4>
+                    <div class="drop-platform">Polygon</div>
+                    <a href="https://freename.io/discover/0xmusic" target="_blank">Discover</a>
                 </div>
                 <div class="drop-item">
                     <h4>MegaPython Legacy Pass</h4>
-                    <p>MegaETH testnet exclusive pass</p>
-                    <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" class="drop-link">View Pass <i class="fas fa-external-link-alt"></i></a>
+                    <div class="drop-platform">MegaETH Testnet</div>
+                    <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank">Rarible</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section id="contact">
         <div class="container">
-            <h2>Let's Create Something Unique</h2>
-            <p>Interested in collaborating on a pixel art project or need distinctive visuals for your Web3 initiative? I'd love to hear about your vision.</p>
-            <a href="mailto:contact@example.com" class="contact-btn">Get in Touch</a>
+            <div class="contact-container">
+                <div class="section-title" style="justify-content: center;">
+                    <i class="fas fa-paper-plane"></i>
+                    <h2>Connect With Me</h2>
+                </div>
+                <p>Interested in collaborating or commissioning a pixel art project? Let's connect!</p>
+                <div class="contact-links">
+                    <a href="https://linktr.ee/MoeR87" target="_blank" class="contact-link">
+                        <i class="fas fa-link"></i>
+                        <span>Linktree</span>
+                    </a>
+                    <a href="https://x.com/MoeeR87" target="_blank" class="contact-link">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter/X</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="logo">MOE</div>
-                <div class="social-links">
-                    <a href="https://linktr.ee/MoeR87" target="_blank" class="social-link" title="Linktree">
-                        <i class="fas fa-tree"></i>
-                    </a>
-                    <a href="https://x.com/MoeeR87" target="_blank" class="social-link" title="X (Twitter)">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" target="_blank" class="social-link" title="PFP">
-                        <i class="fas fa-user"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2025 Moe. All rights reserved. Pixel art is a language.
-            </div>
+            <div class="footer-logo">MOE<span>.</span></div>
+            <p>Pixel Artist & Web3 Creator</p>
+            <p class="copyright">&copy; 2025 Moe. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Array of art GIFs from your CIDs
-        const artGifs = [
-            "bafkreianp5huzaxm5izaxlblflaei6imzxywritvh2e7spspjwlvvggrjy",
+        // Art images for slideshow (IPFS CID links)
+        const artImages = [
+            "bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4",
+            "bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu",
+            "bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4",
+            "bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la",
+            "bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu",
+            "bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe",
+            "bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee",
             "bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm",
             "bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe",
-            "bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e",
+            "bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu",
+            "bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy",
             "bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe",
-            "bafkreihaza2yknlhm24nhfhzldbgt4morhqktg2fp4uitzs5rovjeqglvi",
-            "bafkreiarf5voahgzexthq4n2ijsetnutqvc7pe3fck3cflkb3hj5dhsazq",
-            "bafkreigmlw4tkx3ws7fh6hdoyfxrp4wldi5qvryu5nlzjahevu2gphxiva",
-            "bafkreidakh5lqzbq3n2az3zh5wo6umfbjy5vwccuurlpne5g6wk4u7znhm"
+            "bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e"
         ];
-        
-        // Function to shuffle array (randomize order)
+
+        // Function to shuffle array randomly
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -716,37 +705,37 @@
             }
             return array;
         }
-        
-        // Function to initialize the slideshow
-        function initSlideshow() {
-            const slideshow = document.getElementById('artSlideshow');
+
+        // Function to create slideshow
+        function createSlideshow() {
+            const slideshowTrack = document.getElementById('slideshowTrack');
             
-            // Shuffle the GIFs
-            const shuffledGifs = shuffleArray([...artGifs]);
+            // Shuffle the images for random order
+            const shuffledImages = shuffleArray([...artImages]);
             
-            // Create two sets of slides for seamless looping
-            for (let set = 0; set < 2; set++) {
-                shuffledGifs.forEach(cid => {
-                    const slideItem = document.createElement('div');
-                    slideItem.className = 'slide-item';
-                    
-                    const img = document.createElement('img');
-                    img.src = `https://ipfs.io/ipfs/${cid}`;
-                    img.alt = "Pixel Art by Moe";
-                    img.loading = "lazy";
-                    
-                    slideItem.appendChild(img);
-                    slideshow.appendChild(slideItem);
-                });
-            }
+            // Create slides (duplicate to create seamless loop)
+            const allImages = [...shuffledImages, ...shuffledImages];
+            
+            allImages.forEach(cid => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                
+                const img = document.createElement('img');
+                img.src = `https://cloudflare-ipfs.com/ipfs/${cid}`;
+                img.alt = "Pixel Art by Moe";
+                img.loading = "lazy";
+                
+                slide.appendChild(img);
+                slideshowTrack.appendChild(slide);
+            });
         }
-        
+
         // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', initSlideshow);
+        document.addEventListener('DOMContentLoaded', createSlideshow);
         
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
@@ -755,7 +744,7 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
