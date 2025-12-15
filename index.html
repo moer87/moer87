@@ -8,76 +8,107 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
 </head>
 <body>
+    <div class="cursor"></div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <img src="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe's Avatar">
-                <span>Moe</span>
-            </div>
+            <a href="#" class="logo">MOE<span class="pixel-dot">.</span></a>
             <div class="nav-links">
+                <a href="#gallery">Gallery</a>
                 <a href="#about">About</a>
-                <a href="#artwork">Artwork</a>
                 <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
+                <a href="#contact" class="btn-nav">Contact</a>
             </div>
+            <button class="menu-btn" aria-label="Menu">
+                <span></span><span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Pixel Artist & <span class="highlight">Web3 Creator</span></h1>
-            <p class="subtitle">Transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Hire Me</a>
-                <a href="#artwork" class="btn btn-secondary">View Art</a>
+            <h1 class="hero-title">
+                <span class="title-line">CRAFTING</span>
+                <span class="title-line">DIGITAL</span>
+                <span class="title-line highlight">SOULS<span class="pixel-dot">.</span></span>
+            </h1>
+            <p class="hero-subtitle">Pixel Artist & Web3 Creator specializing in animated, timeless art for NFT projects and digital identity.</p>
+            <a href="#gallery" class="btn-scroll">
+                <span>Explore the Art</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+        <div class="hero-bg-gradient"></div>
+    </section>
+
+    <!-- Main Art Gallery (Horizontal Scroll) -->
+    <section class="section gallery-section" id="gallery">
+        <div class="section-header">
+            <h2 class="section-title">Pixel Gallery</h2>
+            <p class="section-subtitle">A randomized showcase of my work. Click to enlarge, drag or scroll horizontally.</p>
+            <div class="gallery-controls">
+                <button id="shuffle-btn" class="icon-btn" title="Shuffle artworks">
+                    <i class="fas fa-random"></i>
+                </button>
+                <button id="fullscreen-btn" class="icon-btn" title="Toggle full view">
+                    <i class="fas fa-expand"></i>
+                </button>
             </div>
         </div>
-        
-        <!-- Art Slideshow -->
-        <div class="slideshow-container">
-            <div class="slideshow-track" id="slideshow-track"></div>
-            <div class="slideshow-overlay"></div>
+        <div class="gallery-container">
+            <div class="gallery-track" id="gallery-track"></div>
+        </div>
+        <div class="scroll-hint">
+            <i class="fas fa-arrow-right"></i>
+            <span>Scroll Horizontally</span>
         </div>
     </section>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <img id="modal-image" src="" alt="Enlarged Pixel Art">
+            <div class="modal-info">
+                <p>Pixel Art by <strong>Moe</strong></p>
+                <a id="ipfs-link" href="#" target="_blank" class="btn-ipfs">
+                    <i class="fas fa-external-link-alt"></i> View on IPFS
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- About Section -->
-    <section class="section" id="about">
+    <section class="section about-section" id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I am <strong>Moe</strong>, a pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities. My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
-                    
-                    <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype. Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
-                    
-                    <p class="quote">Pixel art is not just a style to me; it's a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
+            <div class="about-grid">
+                <div class="about-images">
+                    <div class="about-img-main">
+                        <img src="https://ipfs.io/ipfs/bafkreiehyjlk2yyewbj6lyt6sis75js2rw7tmt6mpwe2k6qonrf6waqzdu" alt="Moe at work" loading="lazy">
+                    </div>
+                    <div class="about-img-secondary">
+                        <img src="https://ipfs.io/ipfs/bafkreicrxvq4wdwxdqzf53ldymbqf7b77jn6i742mmnnyhivc4jokgqvpi" alt="Moe profile" loading="lazy">
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe's PFP">
-                    <div class="pfp-label">My PFP</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Artwork Gallery -->
-    <section class="section dark-section" id="artwork">
-        <div class="container">
-            <h2 class="section-title">My Art Gallery</h2>
-            <p class="section-subtitle">A curated selection of my pixel art creations</p>
-            
-            <div class="gallery-container">
-                <div class="oncyber-frame">
-                    <iframe src="https://oncyber.io/moegallery" title="Moe's Oncyber Gallery"></iframe>
-                    <div class="frame-label">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>Explore my full gallery on <a href="https://oncyber.io/moegallery" target="_blank">Oncyber</a></span>
+                <div class="about-content">
+                    <h2 class="section-title">The Artist<span class="pixel-dot">.</span></h2>
+                    <p>I am <strong>Moe</strong>, a pixel artist and Web3 creator. I transform ideas into distinctive pixel-based visuals that feel <span class="highlight-text">alive, collectible, and timeless</span>.</p>
+                    <p>My work focuses on designing and animating pixel characters, collections, and interchangeable art systems to help projects stand out through <strong>strong visual identity</strong> rather than hype.</p>
+                    <blockquote>
+                        “Pixel art is not just a style to me; it’s a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic.”
+                    </blockquote>
+                    <div class="about-links">
+                        <a href="https://oncyber.io/moegallery" target="_blank" class="social-link">
+                            <i class="fas fa-gem"></i> Full Oncyber Gallery
+                        </a>
+                        <a href="https://linktr.ee/MoeR87" target="_blank" class="social-link">
+                            <i class="fas fa-link"></i> All My Links
+                        </a>
                     </div>
                 </div>
             </div>
@@ -85,66 +116,61 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="section" id="projects">
+    <section class="section projects-section dark-section" id="projects">
         <div class="container">
-            <h2 class="section-title">Projects & Partnerships</h2>
-            <p class="section-subtitle">My current and past work across different blockchains</p>
-            
+            <div class="section-header">
+                <h2 class="section-title">Projects & Drops</h2>
+                <p class="section-subtitle">My work across different blockchains and partnerships.</p>
+            </div>
             <div class="projects-grid">
                 <div class="project-card featured">
-                    <div class="project-badge">Currently Building</div>
+                    <div class="project-badge">Building Now</div>
                     <div class="project-image">
-                        <img src="https://ipfs.io/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer Project">
+                        <img src="https://ipfs.io/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer Project" loading="lazy">
                     </div>
                     <div class="project-content">
                         <h3>Based Moer</h3>
                         <p class="project-chain">Base Blockchain</p>
-                        <p>An innovative pixel art project being built on the Base blockchain, focusing on community and unique digital identities.</p>
+                        <p>An innovative pixel art project being built on the Base blockchain.</p>
                     </div>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-content">
-                        <h3>MOER87 on DR!P Haus</h3>
-                        <p class="project-chain">Solana</p>
-                        <p>Exclusive pixel art drops on the DR!P platform showcasing limited edition animated pieces.</p>
-                        <a href="https://drip.haus/moer87" target="_blank" class="project-link">View on DR!P <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <h3>MOER87</h3>
+                    <p class="project-chain">DR!P Haus • Solana</p>
+                    <p>Exclusive pixel art drops on the DR!P platform.</p>
+                    <a href="https://drip.haus/moer87" target="_blank" class="project-link">View Drop</a>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-content">
-                        <h3>Famous Pixel Dogs</h3>
-                        <p class="project-chain">Polygon</p>
-                        <p>A collection of uniquely designed pixel dogs with various traits and accessories.</p>
-                        <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="project-link">View on OpenSea <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <h3>Famous Pixel Dogs</h3>
+                    <p class="project-chain">OpenSea • Polygon</p>
+                    <p>A collection of uniquely designed pixel dogs with various traits.</p>
+                    <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="project-link">View Collection</a>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-content">
-                        <h3>Ape Punks</h3>
-                        <p class="project-chain">Polygon</p>
-                        <p>Pixel art apes with punk aesthetics, combining two iconic crypto art styles.</p>
-                        <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="project-link">View on OpenSea <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <h3>Ape Punks</h3>
+                    <p class="project-chain">OpenSea • Polygon</p>
+                    <p>Pixel art apes with punk aesthetics.</p>
+                    <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="project-link">View Collection</a>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-content">
-                        <h3>The Herd</h3>
-                        <p class="project-chain">Polygon</p>
-                        <p>A collection of animal-themed pixel art characters with community focus.</p>
-                        <a href="https://opensea.io/collection/the-herd-4" target="_blank" class="project-link">View on OpenSea <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    <h3>Other Ventures</h3>
+                    <p class="project-chain">Various Chains</p>
+                    <p>Including The Herd, .0xmusic Domains, and MegaPython Legacy Pass.</p>
+                    <a href="https://linktr.ee/MoeR87" target="_blank" class="project-link">All Links</a>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>.0xmusic Web3 Domains</h3>
-                        <p class="project-chain">Polygon</p>
-                        <p>Pixel art integration for music-themed Web3 domain names on Freename.io.</p>
-                        <a href="https://freename.io/discover/0xmusic" target="_blank" class="project-link">View on Freename <i class="fas fa-arrow-right"></i></a>
+                <div class="project-card project-card-social">
+                    <h3>Connect & Updates</h3>
+                    <p>Follow my latest work and updates on X and through my Linktree.</p>
+                    <div class="social-links">
+                        <a href="https://x.com/MoeeR87" target="_blank" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://linktr.ee/MoeR87" target="_blank" class="social-icon">
+                            <i class="fas fa-link"></i>
+                        </a>
+                        <a href="https://oncyber.io/moegallery" target="_blank" class="social-icon">
+                            <i class="fas fa-gem"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -152,47 +178,33 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section dark-section" id="contact">
+    <section class="section contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title">Let's Work Together</h2>
-            <p class="section-subtitle">Interested in collaborating or hiring me for your project?</p>
-            
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-                    
-                    <div class="contact-links">
-                        <a href="https://linktr.ee/MoeR87" target="_blank" class="contact-link">
-                            <i class="fas fa-link"></i>
-                            <span>All My Links (Linktree)</span>
+            <div class="contact-grid">
+                <div class="contact-content">
+                    <h2 class="section-title">Let's Create<span class="pixel-dot">.</span></h2>
+                    <p class="contact-lead">Interested in collaborating, commissioning a piece, or discussing an NFT project?</p>
+                    <p>My expertise includes:</p>
+                    <ul class="expertise-list">
+                        <li><i class="fas fa-square"></i> Custom Animated & Static Pixel Art</li>
+                        <li><i class="fas fa-square"></i> NFT Collection Design & Strategy</li>
+                        <li><i class="fas fa-square"></i> Web3 Project Leadership</li>
+                        <li><i class="fas fa-square"></i> Digital Identity & PFP Systems</li>
+                    </ul>
+                    <div class="contact-actions">
+                        <a href="https://x.com/MoeeR87" target="_blank" class="btn-primary">
+                            <i class="fab fa-twitter"></i> DM on X
                         </a>
-                        <a href="https://x.com/MoeeR87" target="_blank" class="contact-link">
-                            <i class="fab fa-twitter"></i>
-                            <span>Follow me on X</span>
+                        <a href="https://linktr.ee/MoeR87" target="_blank" class="btn-secondary">
+                            <i class="fas fa-link"></i> All Contact Links
                         </a>
-                    </div>
-                    
-                    <div class="hire-box">
-                        <h4>Why Hire Me?</h4>
-                        <ul>
-                            <li>Professional pixel art with animation expertise</li>
-                            <li>Web3 and NFT project experience</li>
-                            <li>Multi-chain project collaboration</li>
-                            <li>Strong visual identity development</li>
-                            <li>Long-term project vision and structure</li>
-                        </ul>
                     </div>
                 </div>
-                
-                <div class="contact-cta">
-                    <div class="cta-box">
-                        <h3>Ready to create something amazing?</h3>
-                        <p>Reach out through my social channels or check my Linktree for all available contact methods.</p>
-                        <a href="https://linktr.ee/MoeR87" target="_blank" class="btn btn-primary btn-large">
-                            <i class="fas fa-external-link-alt"></i> View All My Links
-                        </a>
-                        <p class="cta-note">I typically respond within 24-48 hours</p>
+                <div class="contact-note">
+                    <div class="note-card">
+                        <i class="fas fa-quote-left"></i>
+                        <p>I approach every project with a focus on <strong>long-term vision, structural clarity, and artistic intention</strong>. Let's build something timeless.</p>
+                        <div class="signature">— Moe</div>
                     </div>
                 </div>
             </div>
@@ -203,30 +215,20 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe's Avatar">
-                    <div>
-                        <h3>Moe</h3>
-                        <p>Pixel Artist & Web3 Creator</p>
-                    </div>
+                <div class="footer-brand">
+                    <a href="#" class="logo">MOE<span class="pixel-dot">.</span></a>
+                    <p>Pixel Artist & Web3 Creator</p>
                 </div>
-                
                 <div class="footer-links">
+                    <a href="#gallery">Gallery</a>
                     <a href="#about">About</a>
-                    <a href="#artwork">Artwork</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
                 </div>
-                
-                <div class="footer-social">
-                    <a href="https://x.com/MoeeR87" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://linktr.ee/MoeR87" target="_blank"><i class="fas fa-link"></i></a>
-                    <a href="https://oncyber.io/moegallery" target="_blank"><i class="fas fa-gem"></i></a>
+                <div class="footer-copy">
+                    <p>&copy; <span id="current-year"></span> Moe. All rights reserved.</p>
+                    <p>Crafting digital souls, one pixel at a time.</p>
                 </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> Moe. All rights reserved. Pixel art is a language.</p>
             </div>
         </div>
     </footer>
