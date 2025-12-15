@@ -1,271 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MoeR87</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoeR87 - Pixel Artist & Web3 Creator</title>
+    <meta name="description" content="MoeR87: Specializing in animated pixel art for NFTs, Web3 projects, and digital identities.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=VT323&display=swap');
 
-  <!-- Modern clean font (non-pixel) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        :root {
+            --bg: #05050a;
+            --card-bg: rgba(15, 15, 30, 0.7);
+            --accent: #00ffcc;
+            --accent2: #ff00aa;
+            --text: #e0f0ff;
+            --border-glow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
 
-  <style>
-    :root {
-      --bg: #0b0b0e;
-      --card: #12121a;
-      --text: #eaeaf0;
-      --muted: #9a9ab0;
-      --accent: #6cf2c2;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 204, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 170, 0.1) 0%, transparent 20%);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        header {
+            text-align: center;
+            padding: 100px 20px 80px;
+            position: relative;
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(1200px 600px at 50% -200px, #1a1a2a, var(--bg));
-      color: var(--text);
-      line-height: 1.6;
-    }
+        .pfp {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 6px solid var(--accent);
+            box-shadow: var(--border-glow);
+            image-rendering: pixelated;
+            margin-bottom: 40px;
+        }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+        h1 {
+            font-family: 'VT323', monospace;
+            font-size: 5rem;
+            margin: 0;
+            color: var(--accent);
+            text-shadow: 0 0 30px var(--accent);
+            letter-spacing: 8px;
+        }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 20px 0;
+            opacity: 0.9;
+        }
 
-    h1, h2, h3 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
+        /* Full-screen grid gallery hero */
+        .hero-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: auto;
+        }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 20px;
-    }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: var(--border-glow);
+            transition: transform 0.4s ease;
+        }
 
-    h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
 
-    p {
-      color: var(--muted);
-      font-size: 16px;
-    }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+            display: block;
+        }
 
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-      text-align: center;
-      padding-top: 120px;
-    }
+        /* About */
+        .about {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 0 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
 
-    .hero img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      margin: auto;
-      opacity: 0.85;
-    }
+        /* Current Project */
+        .project-highlight {
+            text-align: center;
+            padding: 80px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0, 255, 204, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
+        }
 
-    /* SLIDER */
-    .slider-wrapper {
-      overflow: hidden;
-      position: relative;
-      margin: 60px 0;
-    }
+        .project-highlight img {
+            max-width: 500px;
+            width: 100%;
+            image-rendering: pixelated;
+            border: 6px solid var(--accent2);
+            box-shadow: var(--border-glow);
+            border-radius: 20px;
+        }
 
-    .slider {
-      display: flex;
-      gap: 20px;
-      animation: scroll 40s linear infinite;
-    }
+        h2 {
+            font-family: 'VT323', monospace;
+            font-size: 3rem;
+            color: var(--accent2);
+            text-shadow: 0 0 20px var(--accent2);
+            text-align: center;
+            margin: 80px 0 40px;
+        }
 
-    .slider img {
-      width: 220px;
-      height: 220px;
-      border-radius: 14px;
-      object-fit: cover;
-      background: #000;
-    }
+        /* Oncyber */
+        .oncyber {
+            text-align: center;
+            padding: 80px 20px;
+        }
 
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
+        .oncyber iframe {
+            width: 100%;
+            max-width: 1200px;
+            height: 700px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: var(--border-glow);
+        }
 
-    /* ABOUT */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-      align-items: center;
-    }
+        /* Personal photos */
+        .personal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
 
-    .about img {
-      width: 100%;
-      max-width: 180px;
-      border-radius: 14px;
-      opacity: 0.7;
-    }
+        .personal img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--border-glow);
+        }
 
-    /* GALLERY */
-    iframe {
-      width: 100%;
-      height: 520px;
-      border-radius: 16px;
-      border: none;
-    }
+        /* Drops */
+        .drops {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
+        .drop-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            transition: transform 0.4s;
+        }
 
-    .card {
-      background: var(--card);
-      border-radius: 18px;
-      padding: 24px;
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
+        .drop-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--border-glow);
+        }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
+        .drop-card a {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      border-top: 1px solid #1f1f2a;
-      margin-top: 80px;
-    }
+        .drop-card a:hover {
+            color: var(--accent2);
+        }
 
-    .links a {
-      margin: 0 12px;
-      font-size: 15px;
-    }
+        /* Hire */
+        .hire {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(255,0,170,0.15));
+        }
 
-    /* MOBILE */
-    @media(max-width: 768px) {
-      h1 { font-size: 32px; }
-      h2 { font-size: 26px; }
-      .about { grid-template-columns: 1fr; text-align: center; }
-      iframe { height: 420px; }
-    }
-  </style>
+        .hire-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--accent);
+            color: #000;
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: var(--border-glow);
+            transition: all 0.4s;
+        }
+
+        .hire-btn:hover {
+            background: var(--accent2);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid rgba(0, 255, 204, 0.3);
+        }
+
+        footer a {
+            color: var(--text);
+            margin: 0 30px;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 3.5rem; }
+            .pfp { width: 150px; height: 150px; }
+            .hero-gallery { grid-template-columns: 1fr; }
+            .oncyber iframe { height: 400px; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <img src="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
-  <h1>MoeR87</h1>
-  <p>
-    Pixel artist & Web3 creator crafting animated and static pixel identities<br/>
-    for NFT projects, brands, and on-chain culture.
-  </p>
-</section>
+    <header>
+        <img src="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe PFP" class="pfp">
+        <h1>MoeR87</h1>
+        <p class="tagline">Pixel Artist & Web3 Creator</p>
+    </header>
 
-<!-- SLIDER -->
-<section>
-  <div class="slider-wrapper">
-    <div class="slider" id="slider"></div>
-  </div>
-</section>
+    <section class="hero-gallery">
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe" alt="Pixel Art"></div>
+        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e" alt="Pixel Art"></div>
+    </section>
 
-<!-- ABOUT -->
-<section class="about">
-  <img src="https://ipfs.io/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i">
-  <div>
-    <h2>About</h2>
-    <p>
-      I’m Moe — a pixel artist and Web3 builder specializing in animated and static
-      pixel art for NFT collections and digital identities.
-      <br/><br/>
-      I focus on strong visual language, consistency, and systems that feel alive
-      and collectible — not hype.
-      <br/><br/>
-      Pixel art is not just a style to me; it’s a language.
-    </p>
-  </div>
-</section>
+    <section class="about">
+        <p>I am Moe, a pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities. My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
+        <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype. Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
+        <p>Pixel art is not just a style to me; it’s a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
+    </section>
 
-<!-- BASED MOER -->
-<section>
-  <h2>Currently Building</h2>
-  <div class="card">
-    <img style="width:100%;border-radius:14px;margin-bottom:16px"
-      src="https://ipfs.io/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4">
-    <p>Based Moer — an evolving pixel-native project on Base.</p>
-  </div>
-</section>
+    <h2>Current Project</h2>
+    <section class="project-highlight">
+        <h3>Based Moer on Base Blockchain</h3>
+        <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer GIF">
+        <p>Building the next evolution of pixel art on Base.</p>
+    </section>
 
-<!-- GALLERY -->
-<section>
-  <h2>Oncyber Gallery</h2>
-  <iframe src="https://oncyber.io/moegallery"></iframe>
-</section>
+    <h2>3D Gallery Experience</h2>
+    <section class="oncyber">
+        <iframe src="https://oncyber.io/moegallery" allowfullscreen></iframe>
+    </section>
 
-<!-- DROPS -->
-<section>
-  <h2>Drops & Partnerships</h2>
-  <div class="cards">
-    <div class="card"><a href="https://drip.haus/moer87">MOER87 on DR!P Haus</a></div>
-    <div class="card"><a href="https://opensea.io/collection/famouspixeldogs">Famous Pixel Dogs</a></div>
-    <div class="card"><a href="https://opensea.io/collection/polygon-ape-punks-club">Ape Punks</a></div>
-    <div class="card"><a href="https://opensea.io/collection/the-herd-4">The Herd</a></div>
-    <div class="card"><a href="https://freename.io/discover/0xmusic">.0xmusic Domains</a></div>
-    <div class="card"><a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4">MegaPython Legacy Pass</a></div>
-  </div>
-</section>
+    <h2>Behind the Pixels</h2>
+    <section class="personal">
+        <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="Moe Photo 1">
+        <img src="https://gateway.pinata.cloud/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" alt="Moe Photo 2">
+    </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="links">
-    <a href="https://linktr.ee/MoeR87">Linktree</a>
-    <a href="https://x.com/MoeeR87">X</a>
-  </div>
-  <p style="margin-top:20px;font-size:14px">© MoeR87</p>
-</footer>
+    <h2>Past Drops & Partnerships</h2>
+    <section class="drops">
+        <div class="drop-card">
+            <p>MOER87 on DR!P Haus (Solana)</p>
+            <a href="https://drip.haus/moer87" target="_blank">Explore →</a>
+        </div>
+        <div class="drop-card">
+            <p>Famous Pixel Dogs (Polygon)</p>
+            <a href="https://opensea.io/collection/famouspixeldogs" target="_blank">View on OpenSea →</a>
+        </div>
+        <div class="drop-card">
+            <p>Ape Punks (Polygon)</p>
+            <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank">View on OpenSea →</a>
+        </div>
+        <div class="drop-card">
+            <p>The Herd (Polygon)</p>
+            <a href="https://opensea.io/collection/the-herd-4" target="_blank">View on OpenSea →</a>
+        </div>
+        <div class="drop-card">
+            <p>.0xmusic Web3 Domains (Polygon)</p>
+            <a href="https://freename.io/discover/0xmusic" target="_blank">Discover →</a>
+        </div>
+        <div class="drop-card">
+            <p>MegaPython Legacy Pass (MegaETH testnet)</p>
+            <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank">View on Rarible →</a>
+        </div>
+    </section>
 
-<script>
-  const cids = [
-    "bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4",
-    "bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu",
-    "bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4",
-    "bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la",
-    "bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu",
-    "bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe",
-    "bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee",
-    "bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm",
-    "bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe",
-    "bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu",
-    "bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy",
-    "bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe",
-    "bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e"
-  ].sort(() => Math.random() - 0.5);
+    <section class="hire">
+        <h2>Ready to Build Something Timeless?</h2>
+        <p>Commission custom pixel art or collaborate on your next Web3 project.</p>
+        <a href="https://linktr.ee/MoeR87" target="_blank" class="hire-btn">Contact Me</a>
+    </section>
 
-  const slider = document.getElementById("slider");
-  [...cids, ...cids].forEach(cid => {
-    const img = document.createElement("img");
-    img.src = `https://ipfs.io/ipfs/${cid}`;
-    slider.appendChild(img);
-  });
-</script>
+    <footer>
+        <a href="https://linktr.ee/MoeR87" target="_blank">Linktree</a>
+        <a href="https://x.com/MoeeR87" target="_blank">X / Twitter</a>
+    </footer>
+
+    <script>
+        // Randomize gallery order on load
+        const gallery = document.querySelector('.hero-gallery');
+        const items = Array.from(gallery.children);
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        shuffle(items);
+        gallery.innerHTML = '';
+        items.forEach(item => gallery.appendChild(item));
+    </script>
 
 </body>
 </html>
