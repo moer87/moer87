@@ -3,354 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoeR87 - Pixel Artist & Web3 Creator</title>
-    <meta name="description" content="MoeR87: Specializing in animated pixel art for NFTs, Web3 projects, and digital identities.">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=VT323&display=swap');
-
-        :root {
-            --bg: #05050a;
-            --card-bg: rgba(15, 15, 30, 0.7);
-            --accent: #00ffcc;
-            --accent2: #ff00aa;
-            --text: #e0f0ff;
-            --border-glow: 0 0 20px rgba(0, 255, 204, 0.5);
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 204, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 80% 20%, rgba(255, 0, 170, 0.1) 0%, transparent 20%);
-        }
-
-        header {
-            text-align: center;
-            padding: 100px 20px 80px;
-            position: relative;
-        }
-
-        .pfp {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 6px solid var(--accent);
-            box-shadow: var(--border-glow);
-            image-rendering: pixelated;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            font-family: 'VT323', monospace;
-            font-size: 5rem;
-            margin: 0;
-            color: var(--accent);
-            text-shadow: 0 0 30px var(--accent);
-            letter-spacing: 8px;
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin: 20px 0;
-            opacity: 0.9;
-        }
-
-        /* Full-screen grid gallery hero */
-        .hero-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
-            max-width: 1400px;
-            margin: auto;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: var(--border-glow);
-            transition: transform 0.4s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            image-rendering: pixelated;
-            display: block;
-        }
-
-        /* About */
-        .about {
-            max-width: 900px;
-            margin: 100px auto;
-            padding: 0 20px;
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* Current Project */
-        .project-highlight {
-            text-align: center;
-            padding: 80px 20px;
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(0, 255, 204, 0.3);
-            border-bottom: 1px solid rgba(0, 255, 204, 0.3);
-        }
-
-        .project-highlight img {
-            max-width: 500px;
-            width: 100%;
-            image-rendering: pixelated;
-            border: 6px solid var(--accent2);
-            box-shadow: var(--border-glow);
-            border-radius: 20px;
-        }
-
-        h2 {
-            font-family: 'VT323', monospace;
-            font-size: 3rem;
-            color: var(--accent2);
-            text-shadow: 0 0 20px var(--accent2);
-            text-align: center;
-            margin: 80px 0 40px;
-        }
-
-        /* Oncyber */
-        .oncyber {
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .oncyber iframe {
-            width: 100%;
-            max-width: 1200px;
-            height: 700px;
-            border: none;
-            border-radius: 20px;
-            box-shadow: var(--border-glow);
-        }
-
-        /* Personal photos */
-        .personal {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .personal img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: var(--border-glow);
-        }
-
-        /* Drops */
-        .drops {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .drop-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 204, 0.3);
-            transition: transform 0.4s;
-        }
-
-        .drop-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--border-glow);
-        }
-
-        .drop-card a {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .drop-card a:hover {
-            color: var(--accent2);
-        }
-
-        /* Hire */
-        .hire {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(255,0,170,0.15));
-        }
-
-        .hire-btn {
-            display: inline-block;
-            padding: 20px 60px;
-            background: var(--accent);
-            color: #000;
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: var(--border-glow);
-            transition: all 0.4s;
-        }
-
-        .hire-btn:hover {
-            background: var(--accent2);
-            transform: scale(1.1);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid rgba(0, 255, 204, 0.3);
-        }
-
-        footer a {
-            color: var(--text);
-            margin: 0 30px;
-            font-size: 1.3rem;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: var(--accent);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 3.5rem; }
-            .pfp { width: 150px; height: 150px; }
-            .hero-gallery { grid-template-columns: 1fr; }
-            .oncyber iframe { height: 400px; }
-        }
-    </style>
+    <title>MoeR87 | Pixel Art & Web3 Creator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Moe<span>R87</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#project">Project</a>
+                <a href="#drops">Drops</a>
+                <a href="#contact" class="nav-cta">Connect</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-    <header>
-        <img src="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe PFP" class="pfp">
-        <h1>MoeR87</h1>
-        <p class="tagline">Pixel Artist & Web3 Creator</p>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" 
+                     alt="Moe Profile Picture" 
+                     class="profile-pic">
+                <div class="profile-glow"></div>
+            </div>
+            <h1>Bringing Ideas to Life with <span class="highlight">Pixel & Motion</span></h1>
+            <p class="tagline">Digital Art · Web3 Identity · Animated Collections</p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </header>
 
-    <section class="hero-gallery">
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe" alt="Pixel Art"></div>
-        <div class="gallery-item"><img src="https://gateway.pinata.cloud/ipfs/bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e" alt="Pixel Art"></div>
+    <!-- Animated Art Slideshow -->
+    <section class="slideshow-section">
+        <h2 class="section-title">A Glimpse of the Canvas</h2>
+        <div class="slideshow-container">
+            <div class="slideshow-track" id="gifSlideshow">
+                <!-- GIFs will be inserted here by JavaScript -->
+            </div>
+            <div class="slideshow-overlay left"></div>
+            <div class="slideshow-overlay right"></div>
+        </div>
+        <p class="section-subtitle">An ever-evolving collection of static and animated pixel art.</p>
     </section>
 
-    <section class="about">
-        <p>I am Moe, a pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities. My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
-        <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype. Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
-        <p>Pixel art is not just a style to me; it’s a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
-    </section>
-
-    <h2>Current Project</h2>
-    <section class="project-highlight">
-        <h3>Based Moer on Base Blockchain</h3>
-        <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer GIF">
-        <p>Building the next evolution of pixel art on Base.</p>
-    </section>
-
-    <h2>3D Gallery Experience</h2>
-    <section class="oncyber">
-        <iframe src="https://oncyber.io/moegallery" allowfullscreen></iframe>
-    </section>
-
-    <h2>Behind the Pixels</h2>
-    <section class="personal">
-        <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="Moe Photo 1">
-        <img src="https://gateway.pinata.cloud/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" alt="Moe Photo 2">
-    </section>
-
-    <h2>Past Drops & Partnerships</h2>
-    <section class="drops">
-        <div class="drop-card">
-            <p>MOER87 on DR!P Haus (Solana)</p>
-            <a href="https://drip.haus/moer87" target="_blank">Explore →</a>
-        </div>
-        <div class="drop-card">
-            <p>Famous Pixel Dogs (Polygon)</p>
-            <a href="https://opensea.io/collection/famouspixeldogs" target="_blank">View on OpenSea →</a>
-        </div>
-        <div class="drop-card">
-            <p>Ape Punks (Polygon)</p>
-            <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank">View on OpenSea →</a>
-        </div>
-        <div class="drop-card">
-            <p>The Herd (Polygon)</p>
-            <a href="https://opensea.io/collection/the-herd-4" target="_blank">View on OpenSea →</a>
-        </div>
-        <div class="drop-card">
-            <p>.0xmusic Web3 Domains (Polygon)</p>
-            <a href="https://freename.io/discover/0xmusic" target="_blank">Discover →</a>
-        </div>
-        <div class="drop-card">
-            <p>MegaPython Legacy Pass (MegaETH testnet)</p>
-            <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank">View on Rarible →</a>
+    <!-- About Section -->
+    <section id="about" class="about section-pad">
+        <div class="container">
+            <h2 class="section-title">I am <span class="highlight">Moe</span></h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p class="bio-intro">A pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities.</p>
+                    <div class="bio-details">
+                        <p>My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
+                        <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype.</p>
+                        <p>Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
+                        <p class="bio-closing">Pixel art is not just a style to me; it’s a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
+                    </div>
+                </div>
+                <div class="about-photos">
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" 
+                         alt="Moe working in studio" 
+                         class="about-img img-1">
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" 
+                         alt="Moe with artwork" 
+                         class="about-img img-2">
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="hire">
-        <h2>Ready to Build Something Timeless?</h2>
-        <p>Commission custom pixel art or collaborate on your next Web3 project.</p>
-        <a href="https://linktr.ee/MoeR87" target="_blank" class="hire-btn">Contact Me</a>
+    <!-- Oncyber Gallery -->
+    <section id="gallery" class="gallery section-pad">
+        <div class="container">
+            <h2 class="section-title">Virtual <span class="highlight">Gallery</span></h2>
+            <p class="section-subtitle">Explore my curated collection in an immersive 3D space.</p>
+            <div class="gallery-frame">
+                <iframe src="https://oncyber.io/moegallery" 
+                        title="Moe's Oncyber Gallery" 
+                        allow="camera; microphone; fullscreen; xr-spatial-tracking" 
+                        allowfullscreen>
+                </iframe>
+                <div class="frame-overlay">
+                    <p>Powered by <strong>Oncyber</strong> • Use mouse/touch to navigate</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <a href="https://linktr.ee/MoeR87" target="_blank">Linktree</a>
-        <a href="https://x.com/MoeeR87" target="_blank">X / Twitter</a>
+    <!-- Current Project -->
+    <section id="project" class="project section-pad">
+        <div class="container">
+            <div class="project-header">
+                <span class="project-badge">🛠 Currently Building</span>
+                <h2 class="section-title">Based <span class="highlight">Moer</span></h2>
+                <div class="chain-tag">
+                    <i class="fas fa-link"></i> Base
+                </div>
+            </div>
+            <div class="project-showcase">
+                <div class="project-gif">
+                    <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" 
+                         alt="Based Moer Project Animation">
+                    <div class="gif-label">LIVE PREVIEW</div>
+                </div>
+                <div class="project-desc">
+                    <h3>A new pixel-based identity system</h3>
+                    <p>Building a distinctive, animated pixel art collection native to the Base blockchain. Focusing on modular traits, seamless animation, and deep community integration.</p>
+                    <div class="project-status">
+                        <div class="status-item">
+                            <i class="fas fa-palette"></i>
+                            <span>Art & Traits: In Progress</span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Smart Contract: Up Next</span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-users"></i>
+                            <span>Community: Building</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drops & Partnerships -->
+    <section id="drops" class="drops section-pad">
+        <div class="container">
+            <h2 class="section-title">Drops & <span class="highlight">Partnerships</span></h2>
+            <p class="section-subtitle">Notable projects and collaborations across ecosystems.</p>
+            <div class="drops-grid">
+                <a href="https://drip.haus/moer87" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>MOER87</h3>
+                        <span class="chain solana">Solana</span>
+                    </div>
+                    <p>Exclusive digital collectibles on DR!P Haus.</p>
+                    <div class card-arrow><i class="fas fa-arrow-right"></i></div>
+                </a>
+                <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>Famous Pixel Dogs</h3>
+                        <span class="chain polygon">Polygon</span>
+                    </div>
+                    <p>Iconic pixel canine collection.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </a>
+                <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>Ape Punks</h3>
+                        <span class="chain polygon">Polygon</span>
+                    </div>
+                    <p>A pixel evolution of a classic genre.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </a>
+                <a href="https://opensea.io/collection/the-herd-4" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>The Herd</h3>
+                        <span class="chain polygon">Polygon</span>
+                    </div>
+                    <p>A community-driven pixel animal project.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </a>
+                <a href="https://freename.io/discover/0xmusic" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>.0xmusic Web3 Domains</h3>
+                        <span class="chain polygon">Polygon</span>
+                    </div>
+                    <p>Pixel art integration for digital identity domains.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </a>
+                <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" class="drop-card">
+                    <div class="card-header">
+                        <h3>MegaPython Legacy Pass</h3>
+                        <span class="chain mega">MegaETH</span>
+                    </div>
+                    <p>Exclusive testnet access pass with custom art.</p>
+                    <div class="card-arrow"><i class="fas fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="contact" class="connect section-pad">
+        <div class="container">
+            <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+            <p class="section-subtitle">Discover more work, follow the journey, or discuss potential collaborations.</p>
+            <div class="connect-cta">
+                <p>My art and work are the first introduction. If you have a project that needs distinctive pixel artistry or a thoughtful Web3 build, let's talk.</p>
+                <div class="social-links">
+                    <a href="https://linktr.ee/MoeR87" target="_blank" class="social-btn linktree">
+                        <i class="fas fa-tree"></i> All Links
+                    </a>
+                    <a href="https://x.com/MoeeR87" target="_blank" class="social-btn twitter">
+                        <i class="fab fa-twitter"></i> Follow on X
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-logo">Moe<span>R87</span></p>
+            <p class="footer-tag">Crafting digital identity through pixel and motion.</p>
+            <p class="footer-copy">© 2025. All art and content is the property of the creator.</p>
+        </div>
     </footer>
 
-    <script>
-        // Randomize gallery order on load
-        const gallery = document.querySelector('.hero-gallery');
-        const items = Array.from(gallery.children);
-
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        shuffle(items);
-        gallery.innerHTML = '';
-        items.forEach(item => gallery.appendChild(item));
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
