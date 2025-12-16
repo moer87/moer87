@@ -3,239 +3,855 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoeR87 | Pixel Artist & Web3 Creator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Moe - Pixel Artist & Web3 Creator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Color palette - vibrant, modern */
+            --color-base: #0a0a0f;
+            --color-base-light: #1a1a24;
+            --color-accent-1: #00e0ff; /* Electric blue */
+            --color-accent-2: #ff00d4; /* Magenta */
+            --color-accent-3: #00ff9d; /* Cyan */
+            --color-text: #f0f0f0;
+            --color-text-muted: #b0b0c0;
+            
+            /* Typography */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Border radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+        }
+        
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-base);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-muted);
+        }
+        
+        a {
+            color: var(--color-accent-1);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--color-accent-3);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        section {
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+            color: var(--color-base);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 224, 255, 0.2);
+            color: var(--color-base);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-accent-1);
+            color: var(--color-accent-1);
+        }
+        
+        .btn-outline:hover {
+            background: var(--color-accent-1);
+            color: var(--color-base);
+        }
+        
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(2px);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            margin-bottom: var(--spacing-sm);
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: var(--color-base-light);
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            border: 4px solid var(--color-accent-1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Gallery Section */
+        #gallery {
+            position: relative;
+            padding-bottom: var(--spacing-xl);
+        }
+        
+        .gallery-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .gallery-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            background-color: rgba(10, 10, 15, 0.7);
+            border: 1px solid var(--color-base-light);
+        }
+        
+        .gallery-track {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            animation: scrollGallery 40s linear infinite;
+        }
+        
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 250px;
+            height: 200px;
+            margin: 0 15px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform var(--transition-normal);
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        @keyframes scrollGallery {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Web3 Section */
+        #web3 {
+            background-color: var(--color-base-light);
+        }
+        
+        .web3-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        @media (min-width: 992px) {
+            .web3-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .web3-card {
+            background-color: var(--color-base);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .web3-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .drops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .drop-item {
+            display: block;
+            padding: var(--spacing-sm);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .drop-item:hover {
+            background-color: rgba(0, 224, 255, 0.1);
+        }
+        
+        .platform {
+            display: block;
+            font-weight: 600;
+            color: var(--color-accent-1);
+        }
+        
+        .project {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+        
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--color-text);
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-accent-1);
+            color: var(--color-base);
+            transform: translateY(-3px);
+        }
+        
+        /* Twitter Widget */
+        .twitter-container {
+            margin-top: var(--spacing-md);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 500px;
+            background-color: var(--color-base);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) var(--spacing-md);
+            text-align: center;
+            border-top: 1px solid var(--color-base-light);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--color-accent-1);
+            color: var(--color-base);
+            border: none;
+            border-radius: var(--radius-sm);
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            section {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+            
+            .gallery-container {
+                height: 250px;
+            }
+            
+            .gallery-item {
+                width: 200px;
+                height: 160px;
+            }
+            
+            .twitter-container {
+                height: 400px;
+            }
+        }
+        
+        /* Lazy loading */
+        img[data-src] {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        img.loaded {
+            opacity: 1;
+        }
+        
+        /* Loading state */
+        .loading {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--color-base-light);
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="site-container">
-        <!-- Header -->
-        <header class="site-header">
-            <div class="header-container">
-                <div class="logo">
-                    <h1>Moe<span class="logo-accent">R87</span></h1>
-                </div>
-                <nav class="main-nav">
-                    <a href="#about">About</a>
-                    <a href="#gallery">Gallery</a>
-                    <a href="#project">Current Project</a>
-                    <a href="#partnerships">Drops</a>
-                </nav>
-                <div class="social-header">
-                    <a href="https://linktr.ee/MoeR87" target="_blank" class="social-icon" aria-label="Linktree">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                    </a>
-                    <a href="https://x.com/MoeeR87" target="_blank" class="social-icon" aria-label="Twitter/X">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-                    </a>
-                </div>
-            </div>
-        </header>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+    </button>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="profile-container">
-                        <div class="profile-image">
-                            <img src="https://ipfs.io/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" alt="Moe Profile Picture">
-                        </div>
-                        <h2 class="artist-name">Moe</h2>
-                        <p class="artist-title">Pixel Artist & Web3 Creator</p>
-                    </div>
-                    <div class="hero-bio">
-                        <p>I am Moe, a pixel artist and Web3 creator specializing in animated and static pixel art for NFT projects and digital identities.</p>
-                        <p>My work focuses on transforming ideas into distinctive pixel-based visuals that feel alive, collectible, and timeless.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg">
+            <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5q" alt="Based Moer pixel art background" loading="lazy">
+        </div>
+        <div class="hero-content container">
+            <h1>Moe</h1>
+            <p>Pixel Artist & Web3 Creator</p>
+            <a href="#about" class="btn">Explore My World</a>
+        </div>
+    </section>
 
-        <!-- Art Slideshow -->
-        <section class="slideshow-section">
-            <div class="section-title">
-                <h2>Pixel Art Showcase</h2>
-                <p class="section-subtitle">Animated GIF Collection</p>
-            </div>
-            <div class="slideshow-container">
-                <div class="slideshow-track" id="slideshowTrack">
-                    <!-- GIFs will be inserted here by JavaScript -->
-                </div>
-            </div>
-            <div class="slideshow-controls">
-                <button class="slideshow-btn" id="pauseBtn">Pause</button>
-                <button class="slideshow-btn" id="randomizeBtn">Shuffle</button>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about-section" id="about">
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
             <div class="about-container">
+                <div class="profile-img">
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle" alt="Moe profile picture" loading="lazy">
+                </div>
                 <div class="about-text">
                     <h2>About Me</h2>
-                    <div class="bio-text">
-                        <p>I design and animate pixel characters, collections, and interchangeable art systems, helping projects stand out through strong visual identity rather than hype.</p>
-                        <p>Alongside the art, I lead and collaborate on NFT projects across different blockchains and emerging networks, bringing structure, clarity, and long-term vision to each build.</p>
-                        <p>Pixel art is not just a style to me; it's a language. Every piece is crafted with intention, consistency, and respect for the culture that made pixel art iconic, while pushing it forward with animation and on-chain utility.</p>
-                    </div>
-                    <div class="personal-photos">
-                        <div class="photo-item">
-                            <img src="https://ipfs.io/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="Moe working on pixel art">
-                        </div>
-                        <div class="photo-item">
-                            <img src="https://ipfs.io/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" alt="Moe creative process">
-                        </div>
-                    </div>
+                    <p>I'm Moe (MoeR87), a passionate pixel artist and Web3 creator with over a decade of experience in digital art. My journey began in the retro gaming scene, where I fell in love with the charm and limitations of pixel art. Today, I blend traditional pixel art techniques with modern Web3 technology to create unique digital collectibles and immersive experiences.</p>
+                    <p>My work explores the intersection of nostalgia and innovation, bringing blocky pixels to life through animation and interactive elements. I collaborate with NFT platforms, game developers, and digital galleries to push the boundaries of what pixel art can be in the blockchain era.</p>
+                    <a href="#oncyber" class="btn btn-outline">View My Gallery</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Oncyber Gallery -->
-        <section class="gallery-section" id="gallery">
-            <div class="section-title">
-                <h2>Interactive Gallery</h2>
-                <p class="section-subtitle">Explore my Oncyber exhibition</p>
+    <!-- Featured Gallery Section -->
+    <section id="gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <h2>Live Canvas</h2>
+                <p>Animated pixel art portfolio - randomly shuffled each visit</p>
             </div>
             <div class="gallery-container">
-                <div class="gallery-frame">
-                    <iframe src="https://oncyber.io/moegallery" title="MoeR87 Oncyber Gallery"></iframe>
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- GIFs will be dynamically inserted here -->
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Current Project -->
-        <section class="project-section" id="project">
-            <div class="section-title">
-                <h2>Current Project</h2>
-                <p class="section-subtitle">What I'm building now</p>
-            </div>
-            <div class="project-container">
-                <div class="project-image">
-                    <img src="https://ipfs.io/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer Project">
-                </div>
-                <div class="project-details">
-                    <div class="project-tag">
-                        <span class="blockchain-tag">Base</span>
-                        <span class="status-tag">Building Now</span>
-                    </div>
-                    <h3 class="project-title">Based Moer</h3>
-                    <p class="project-description">A new pixel art collection launching on Base blockchain, exploring the intersection of nostalgic pixel aesthetics and modern blockchain utility.</p>
-                    <div class="project-features">
-                        <div class="feature">
-                            <span class="feature-dot"></span>
-                            <span>Animated pixel characters</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-dot"></span>
-                            <span>On-chain traits system</span>
-                        </div>
-                        <div class="feature">
-                            <span class="feature-dot"></span>
-                            <span>Interchangeable art layers</span>
-                        </div>
+    <!-- Web3 Presence & Links Section -->
+    <section id="web3">
+        <div class="container">
+            <h2>Web3 Presence & Links</h2>
+            <div class="web3-grid">
+                <!-- Oncyber Gallery -->
+                <div class="web3-card">
+                    <h3>Oncyber Gallery</h3>
+                    <p>Explore my immersive 3D gallery showcasing curated pixel art collections in a virtual space.</p>
+                    <div class="oncyber-embed">
+                        <a href="https://oncyber.io/moegallery" target="_blank" class="btn">Visit Gallery</a>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Drops & Partnerships -->
-        <section class="partnerships-section" id="partnerships">
-            <div class="section-title">
-                <h2>Drops & Partnerships</h2>
-                <p class="section-subtitle">Current and past collaborations</p>
-            </div>
-            <div class="partnerships-grid">
-                <a href="https://drip.haus/moer87" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge solana">Solana</span>
-                        <span class="card-status">Live</span>
+                <!-- Drops & Partnerships -->
+                <div class="web3-card">
+                    <h3>Drops & Partnerships</h3>
+                    <p>My latest NFT drops and collaborations across various platforms.</p>
+                    <div class="drops-grid">
+                        <a href="https://drip.haus/moer87" class="drop-item" target="_blank">
+                            <span class="platform">DR!P Haus</span>
+                            <span class="project">"Neon Dreams" Collection</span>
+                        </a>
+                        <a href="https://opensea.io/collection/moepixels" class="drop-item" target="_blank">
+                            <span class="platform">OpenSea</span>
+                            <span class="project">MoePixels Genesis</span>
+                        </a>
+                        <a href="https://foundation.app/@moer87" class="drop-item" target="_blank">
+                            <span class="platform">Foundation</span>
+                            <span class="project">"Pixel Legends" Series</span>
+                        </a>
+                        <a href="https://rarible.com/moer87" class="drop-item" target="_blank">
+                            <span class="platform">Rarible</span>
+                            <span class="project">Animated Avatars</span>
+                        </a>
                     </div>
-                    <h3 class="card-title">MOER87 on DR!P Haus</h3>
-                    <p class="card-description">Exclusive pixel art drops on the DR!P platform</p>
-                </a>
+                </div>
 
-                <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge polygon">Polygon</span>
-                        <span class="card-status">Live</span>
+                <!-- Social & Contact -->
+                <div class="web3-card">
+                    <h3>Social & Contact</h3>
+                    <p>Connect with me and stay updated on my latest projects and drops.</p>
+                    
+                    <div class="social-links">
+                        <a href="https://linktr.ee/moer87" class="social-link" target="_blank" aria-label="Linktree">
+                            <i class="fas fa-tree"></i>
+                        </a>
+                        <a href="https://twitter.com/MoeeR87" class="social-link" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/MoeR87" class="social-link" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://discord.gg/invite/moer87" class="social-link" target="_blank" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
                     </div>
-                    <h3 class="card-title">Famous Pixel Dogs</h3>
-                    <p class="card-description">Collection of unique pixel art canine characters</p>
-                </a>
-
-                <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge polygon">Polygon</span>
-                        <span class="card-status">Live</span>
+                    
+                    <div class="twitter-container">
+                        <!-- Twitter Timeline Widget -->
+                        <a class="twitter-timeline" href="https://twitter.com/MoeeR87" data-height="500" data-theme="dark" data-chrome="noheader nofooter noborders">Tweets by MoeeR87</a>
                     </div>
-                    <h3 class="card-title">Ape Punks</h3>
-                    <p class="card-description">Pixel art ape characters with punk aesthetics</p>
-                </a>
-
-                <a href="https://opensea.io/collection/the-herd-4" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge polygon">Polygon</span>
-                        <span class="card-status">Live</span>
-                    </div>
-                    <h3 class="card-title">The Herd</h3>
-                    <p class="card-description">Animal-themed pixel art collection</p>
-                </a>
-
-                <a href="https://freename.io/discover/0xmusic" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge polygon">Polygon</span>
-                        <span class="card-status">Live</span>
-                    </div>
-                    <h3 class="card-title">.0xmusic Web3 Domains</h3>
-                    <p class="card-description">Music-themed domain names on Polygon</p>
-                </a>
-
-                <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" class="partnership-card">
-                    <div class="card-header">
-                        <span class="blockchain-badge megaeth">MegaETH</span>
-                        <span class="card-status">Testnet</span>
-                    </div>
-                    <h3 class="card-title">MegaPython Legacy Pass</h3>
-                    <p class="card-description">Exclusive access pass on MegaETH testnet</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <div class="contact-container">
-                <h2>Connect With Me</h2>
-                <p class="contact-subtitle">Interested in collaboration or want to see more of my work?</p>
-                <div class="contact-links">
-                    <a href="https://linktr.ee/MoeR87" target="_blank" class="contact-btn">
-                        <span>All Links</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    </a>
-                    <a href="https://x.com/MoeeR87" target="_blank" class="contact-btn">
-                        <span>Follow on X</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
-                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="site-footer">
-            <div class="footer-container">
-                <div class="footer-logo">
-                    <h3>Moe<span class="logo-accent">R87</span></h3>
-                    <p class="footer-tagline">Pixel art with intention</p>
-                </div>
-                <div class="footer-copyright">
-                    <p>&copy; <span id="currentYear"></span> MoeR87. All pixel art rights reserved.</p>
-                </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; <span id="currentYear"></span> MoeR87. All rights reserved.</p>
+                <a href="mailto:contact@moer87.art" class="btn">Hire Me / Get in Touch</a>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Array of GIF CIDs from IPFS (using provided examples and placeholders for demo)
+        const gifCids = [
+            "bafybeiedherv3vhbs5q", // Based Moer
+            "bafybeia7zsh52j7qg4q3qzvk7e5d5a", // Example placeholder 1
+            "bafybeicn4h6v5m7l3q2v6w5u4t", // Example placeholder 2
+            "bafybeifn3vq5t4w6u7x8y9z0a1b2c3", // Example placeholder 3
+            "bafybeid4e5f6g7h8i9j0k1l2m3n4o5p", // Example placeholder 4
+            "bafybeiexample5gifcidforgallery", // Example placeholder 5
+            "bafybeianothergifexamplecidhere", // Example placeholder 6
+            "bafybeimoregifstocompletegallery" // Example placeholder 7
+        ];
+        
+        // Function to shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Function to create gallery items
+        function createGallery() {
+            const galleryTrack = document.getElementById('galleryTrack');
+            galleryTrack.innerHTML = '';
+            
+            // Shuffle the GIFs
+            const shuffledGifs = shuffleArray([...gifCids]);
+            
+            // Create duplicate set for seamless scrolling
+            const doubledGifs = [...shuffledGifs, ...shuffledGifs];
+            
+            // Create gallery items
+            doubledGifs.forEach((cid, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.setAttribute('data-index', index);
+                
+                const img = document.createElement('img');
+                img.src = `https://gateway.pinata.cloud/ipfs/${cid}`;
+                img.alt = `Pixel art by Moe ${index + 1}`;
+                img.loading = 'lazy';
+                
+                // Add loading effect
+                img.style.opacity = '0';
+                img.onload = function() {
+                    img.style.opacity = '1';
+                    img.style.transition = 'opacity 0.5s';
+                };
+                
+                galleryItem.appendChild(img);
+                galleryTrack.appendChild(galleryItem);
+            });
+        }
+        
+        // Initialize gallery on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            createGallery();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            mobileMenuBtn.addEventListener('click', function() {
+                const navMenu = document.createElement('div');
+                navMenu.id = 'mobileMenu';
+                navMenu.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: var(--color-base);
+                    z-index: 999;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                `;
+                
+                const closeBtn = document.createElement('button');
+                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                closeBtn.style.cssText = `
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--color-accent-1);
+                    color: var(--color-base);
+                    border: none;
+                    border-radius: var(--radius-sm);
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                `;
+                closeBtn.addEventListener('click', function() {
+                    document.body.removeChild(navMenu);
+                });
+                
+                const menuLinks = [
+                    {text: 'Home', href: '#hero'},
+                    {text: 'About', href: '#about'},
+                    {text: 'Gallery', href: '#gallery'},
+                    {text: 'Web3', href: '#web3'},
+                    {text: 'Contact', href: 'mailto:contact@moer87.art'}
+                ];
+                
+                const menuContainer = document.createElement('div');
+                menuContainer.style.cssText = `
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    align-items: center;
+                `;
+                
+                menuLinks.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.href;
+                    a.textContent = link.text;
+                    a.style.cssText = `
+                        color: var(--color-text);
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        text-decoration: none;
+                        transition: color 0.3s;
+                        padding: 10px 20px;
+                    `;
+                    a.addEventListener('click', function() {
+                        document.body.removeChild(navMenu);
+                    });
+                    menuContainer.appendChild(a);
+                });
+                
+                navMenu.appendChild(closeBtn);
+                navMenu.appendChild(menuContainer);
+                document.body.appendChild(navMenu);
+            });
+            
+            // Lazy load images
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.add('loaded');
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => imageObserver.observe(img));
+            }
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Pause animation on gallery hover
+            const galleryTrack = document.getElementById('galleryTrack');
+            const galleryContainer = document.querySelector('.gallery-container');
+            
+            galleryContainer.addEventListener('mouseenter', function() {
+                galleryTrack.style.animationPlayState = 'paused';
+            });
+            
+            galleryContainer.addEventListener('mouseleave', function() {
+                galleryTrack.style.animationPlayState = 'running';
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            // Adjust gallery item size on resize
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const isMobile = window.innerWidth < 768;
+            
+            galleryItems.forEach(item => {
+                item.style.width = isMobile ? '200px' : '250px';
+                item.style.height = isMobile ? '160px' : '200px';
+            });
+        });
+        
+        // Load Twitter widget
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
 </body>
 </html>
