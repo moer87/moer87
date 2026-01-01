@@ -1,859 +1,731 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MoeR87 — Pixel Artist & Animator</title>
-  <link rel="icon" href="https://img.icons8.com/color/96/000000/pixel-cat.png" type="image/x-icon">
-  
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-  
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    :root {
-      --bg-dark: #0a0a12;
-      --bg-card: #111122;
-      --primary: #6C63FF;
-      --secondary: #FF6B9D;
-      --accent: #00D9D0;
-      --pixel-green: #00FF88;
-      --text: #E6E6FF;
-      --text-muted: #A0A0CC;
-      --border: #2A2A4A;
-      --grid-color: rgba(108, 99, 255, 0.05);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text);
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(108, 99, 255, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 80% 70%, rgba(255, 107, 157, 0.1) 0%, transparent 20%);
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 32px 32px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    /* Header & Navigation */
-    header {
-      padding: 32px 0;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(10, 10, 18, 0.9);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-    }
-
-    .logo span {
-      color: var(--pixel-green);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      position: relative;
-      padding: 8px 0;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 20px;
-    }
-
-    .social-links a {
-      color: var(--text-muted);
-      font-size: 20px;
-      transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: var(--primary);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 100px 0 80px;
-      text-align: center;
-      position: relative;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(108, 99, 255, 0.15) 0%, transparent 70%);
-      z-index: -1;
-    }
-
-    .profile-container {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .profile-pic {
-      width: 100%;
-      height: 100%;
-      border-radius: 24px;
-      background: url('https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa') center/cover no-repeat;
-      border: 4px solid var(--primary);
-      box-shadow: 
-        0 0 60px rgba(108, 99, 255, 0.4),
-        0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .profile-container::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: -8px;
-      right: -8px;
-      bottom: -8px;
-      border: 2px solid var(--accent);
-      border-radius: 32px;
-      opacity: 0.5;
-      z-index: -1;
-    }
-
-    .hero h1 {
-      font-size: 64px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, var(--text), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -1px;
-    }
-
-    .hero .tagline {
-      font-size: 22px;
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
-    }
-
-    .pixel-badge {
-      display: inline-block;
-      padding: 8px 20px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: var(--pixel-green);
-      margin-top: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    /* About Section */
-    .section {
-      padding: 100px 0;
-    }
-
-    .section-title {
-      font-size: 40px;
-      font-weight: 700;
-      margin-bottom: 60px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 40px;
-      height: 4px;
-      background: var(--primary);
-      border-radius: 2px;
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .about-text {
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--text-muted);
-    }
-
-    .about-text p {
-      margin-bottom: 24px;
-    }
-
-    .about-text strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .skill-item {
-      background: var(--bg-card);
-      padding: 24px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .skill-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      border-color: var(--primary);
-    }
-
-    .skill-item i {
-      font-size: 24px;
-      color: var(--primary);
-      margin-bottom: 16px;
-    }
-
-    .skill-item h3 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    .skill-item p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Currently Building Section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .project-image {
-      width: 100%;
-      height: 280px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .project-card:hover .project-image img {
-      transform: scale(1.05);
-    }
-
-    .project-content {
-      padding: 32px;
-    }
-
-    .project-title {
-      font-size: 24px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .project-title i {
-      color: var(--primary);
-    }
-
-    .project-desc {
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .project-tag {
-      padding: 6px 12px;
-      background: rgba(108, 99, 255, 0.1);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--primary);
-    }
-
-    /* Drops Section */
-    .drops-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .drop-card {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 32px;
-      border: 1px solid var(--border);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .drop-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .drop-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-    }
-
-    .drop-icon {
-      font-size: 32px;
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-
-    .drop-title {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .drop-desc {
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .drop-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 14px;
-      transition: gap 0.3s ease;
-    }
-
-    .drop-link:hover {
-      gap: 12px;
-    }
-
-    /* Gallery Section */
-    .gallery-container {
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .gallery-container iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-    }
-
-    /* Footer */
-    footer {
-      padding: 80px 0 40px;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 30px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .footer-tagline {
-      color: var(--text-muted);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-bottom: 40px;
-    }
-
-    .footer-links a {
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
-    }
-
-    .signature {
-      width: 120px;
-      height: auto;
-      margin: 40px auto 0;
-      opacity: 0.7;
-      filter: brightness(0.8);
-    }
-
-    .copyright {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-top: 40px;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Pixel Animation Bar */
-    .pixel-bar {
-      height: 8px;
-      background: linear-gradient(90deg, 
-        var(--primary) 0%, 
-        var(--secondary) 25%, 
-        var(--accent) 50%, 
-        var(--pixel-green) 75%, 
-        var(--primary) 100%);
-      background-size: 200% 100%;
-      animation: pixelFlow 3s linear infinite;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    @keyframes pixelFlow {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 200% 0%; }
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 1024px) {
-      .about-content,
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      
-      .hero h1 {
-        font-size: 48px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 20px;
-      }
-      
-      .nav-container {
-        flex-direction: column;
-        gap: 20px;
-      }
-      
-      .nav-links {
-        gap: 24px;
-      }
-      
-      .hero h1 {
-        font-size: 36px;
-      }
-      
-      .hero .tagline {
-        font-size: 18px;
-      }
-      
-      .section-title {
-        font-size: 32px;
-      }
-      
-      .drops-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .footer-links {
-        flex-direction: column;
-        gap: 20px;
-      }
-    }
-
-    /* Pixel Art Details */
-    .pixel-corner {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      border: 2px solid var(--primary);
-      pointer-events: none;
-    }
-
-    .pixel-corner.tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-    .pixel-corner.tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
-    .pixel-corner.bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
-    .pixel-corner.br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoeR87 – Pixel Storyteller & Web3 Creator</title>
+    <!-- Google Fonts for clean, modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg: #f7f8ff;
+            --primary: #5b7cff;
+            --secondary: #ff5bdc;
+            --accent: #00f0c8;
+            --text: #1a1a1a;
+            --card: #ffffff;
+            --shadow: rgba(91,124,255,0.15);
+            --radius: 24px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f7f8ff, #eef2ff);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Section styles */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding-top: 120px;
+            padding-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            bottom: 20%;
+            right: 10%;
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .pfp {
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
+            margin: 0 auto 30px;
+            background: url('https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa') center/cover no-repeat;
+            box-shadow: 0 20px 40px rgba(91,124,255,0.25);
+            border: 5px solid white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pfp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(91,124,255,0.35);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ART SLIDER */
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .slider-container::before, .slider-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        .slider-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg), transparent);
+        }
+        
+        .slider-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg), transparent);
+        }
+        
+        .slider-wrapper {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        
+        .slider-wrapper:hover {
+            animation-play-state: paused;
+        }
+        
+        .slider-item {
+            width: 250px;
+            height: 250px;
+            margin: 0 15px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .slider-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.15);
+        }
+        
+        .slider-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* ABOUT SECTION */
+        .about {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius);
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* BASED MOER SECTION */
+        .based {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        
+        .based-image {
+            width: 300px;
+            height: 300px;
+            margin: 40px auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+        
+        .based-image:hover {
+            transform: scale(1.03);
+        }
+        
+        .based-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .based p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* DROPS & PARTNERSHIPS SECTION */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(91,124,255,0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 40px rgba(91,124,255,0.15);
+        }
+        
+        .card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+        
+        .card a:hover {
+            color: var(--secondary);
+        }
+        
+        .card a i {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* ONCYBER GALLERY */
+        .oncyber-container {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .oncyber-container iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 16px;
+            border: none;
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 80px 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.7);
+            margin-top: 60px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(91,124,255,0.2);
+            color: var(--secondary);
+        }
+        
+        .personal-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            margin: 40px auto 0;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            opacity: 0.9;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .personal-image:hover {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+        
+        .personal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(0,0,0,0.6);
+        }
+        
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .cards {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 70px 20px;
+            }
+            
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 70px;
+            }
+            
+            .pfp {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .about, .based {
+                padding: 40px 25px;
+            }
+            
+            .based-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .slider-item {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .oncyber-container iframe {
+                height: 400px;
+            }
+            
+            .social-links {
+                gap: 15px;
+            }
+            
+            .social-link {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .slider-item {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .oncyber-container iframe {
+                height: 350px;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+        
+        /* Animation for sections on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-  <!-- Pixel Animation Bar -->
-  <div class="pixel-bar"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="container nav-container">
-      <div class="logo">Moe<span>R87</span></div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#drops">Drops</a>
-        <a href="#gallery">Gallery</a>
-      </div>
-      <div class="social-links">
-        <a href="https://x.com/MoeeR87" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="https://linktr.ee/MoeR87" target="_blank"><i class="fas fa-link"></i></a>
-      </div>
+    <!-- HERO SECTION -->
+    <section class="hero fade-in">
+        <div class="pfp"></div>
+        <h1>MoeR87 — Pixel Storyteller</h1>
+        <p class="hero-subtitle">Creating handcrafted pixel adventures and worlds</p>
+        <p>Self-taught pixel artist, animator, and Web3 creator building immersive pixel universes across Ethereum, Polygon, Monad, and Base.</p>
+    </section>
+    
+    <!-- ART SLIDER -->
+    <div class="slider-container">
+        <div class="slider-wrapper" id="slider"></div>
     </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="profile-container">
-        <div class="profile-pic"></div>
-      </div>
-      <h1>MoeR87</h1>
-      <p class="tagline">Handcrafting pixel art worlds & animated adventures across the blockchain</p>
-      <div class="pixel-badge">Pixel Artist & Animator</div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <div class="container">
-      <h2 class="section-title">About</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p><strong>MoeR87</strong> is a self-taught pixel artist and animator creating handcrafted, narrative-driven digital worlds. From early hand-drawn sketches of human anatomy to large-scale animated collections like <strong>Famous Pixel Dogs</strong> and <strong>Polygon Ape Punks</strong>, he has spent years mastering form, movement, and storytelling in pixels.</p>
-          <p>A lifelong gamer and early blockchain adopter, MoeR87 transforms concepts into immersive pixel art adventures across <strong>Ethereum, Polygon, Monad, and Base</strong>, including his ongoing <strong>Moerverse</strong> and <strong>Based Ape Punks</strong> projects.</p>
-          <p>Every character, story, and world is built entirely solo, one pixel at a time, blending artistry, animation, and digital ownership into cohesive, living universes.</p>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-item">
-            <i class="fas fa-palette"></i>
-            <h3>Pixel Art</h3>
-            <p>Handcrafted pixel art with focus on form, color, and expression</p>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-film"></i>
-            <h3>Animation</h3>
-            <p>Frame-by-frame pixel animation bringing characters to life</p>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-cube"></i>
-            <h3>World Building</h3>
-            <p>Creating cohesive universes with narrative depth</p>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-link"></i>
-            <h3>Web3 Integration</h3>
-            <p>Blockchain-native art and digital ownership systems</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Currently Building Section -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 class="section-title">Currently Building</h2>
-      <div class="projects-grid">
-        <!-- Based Moer Card -->
-        <div class="project-card">
-          <div class="project-image">
+    
+    <!-- ABOUT SECTION -->
+    <section class="about fade-in">
+        <h2>About</h2>
+        <p>MoeR87 is a self-taught pixel artist and animator creating handcrafted, narrative-driven digital worlds. From early hand-drawn sketches of human anatomy to animated collections like Famous Pixel Dogs and Polygon Ape Punks, he has spent years mastering form, movement, and storytelling in pixels.</p>
+        <p>A lifelong gamer and early blockchain adopter, MoeR87 transforms concepts into immersive pixel art adventures across Ethereum, Polygon, Monad, and Base, including his ongoing Moerverse and Based Ape Punks projects.</p>
+        <p>Every character, story, and world is built entirely solo, one pixel at a time, blending artistry, animation, and digital ownership into living universes.</p>
+    </section>
+    
+    <!-- CURRENTLY BUILDING / BASED MOER SECTION -->
+    <section class="based fade-in">
+        <h2>Currently Building</h2>
+        <div class="based-image">
+            <!-- Based Moer image -->
             <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title"><i class="fas fa-user-astronaut"></i> Based Moer</h3>
-            <p class="project-desc">Pixel art adventures on Base blockchain. A living pixel identity evolving through interactive storytelling and community engagement.</p>
-            <div class="project-tags">
-              <span class="project-tag">Base Chain</span>
-              <span class="project-tag">Pixel Art</span>
-              <span class="project-tag">Identity</span>
+        </div>
+        <p>Based Moer — a living pixel identity and narrative universe.</p>
+    </section>
+    
+    <!-- DROPS & PARTNERSHIPS SECTION -->
+    <section class="fade-in">
+        <h2>Drops & Partnerships</h2>
+        <div class="cards">
+            <!-- Card 1: MOER87 on DR!P Haus -->
+            <div class="card">
+                <a href="https://drip.haus/moer87" target="_blank" rel="noopener noreferrer">
+                    MOER87 on DR!P Haus
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
-          </div>
-        </div>
-
-        <!-- Based Ape Punks Card -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://gateway.pinata.cloud/ipfs/bafybeighcgjocs6kewtvwd6nxbmc5x3ptqtx24bnxew736g2f3elbymgza" alt="Based Ape Punks">
-          </div>
-          <div class="project-content">
-            <h3 class="project-title"><i class="fas fa-ape"></i> Based Ape Punks</h3>
-            <p class="project-desc">Animated pixel ape collection on Base. Each character features unique traits, animations, and interactive elements within the Moerverse ecosystem.</p>
-            <div class="project-tags">
-              <span class="project-tag">Base Chain</span>
-              <span class="project-tag">Collection</span>
-              <span class="project-tag">Animated</span>
+            
+            <!-- Card 2: Famous Pixel Dogs -->
+            <div class="card">
+                <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" rel="noopener noreferrer">
+                    Famous Pixel Dogs
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
-          </div>
+            
+            <!-- Card 3: Polygon Ape Punks -->
+            <div class="card">
+                <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" rel="noopener noreferrer">
+                    Polygon Ape Punks
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            
+            <!-- Card 4: The Herd (Iced Out Coin Flip) -->
+            <div class="card">
+                <a href="https://opensea.io/collection/the-herd-4" target="_blank" rel="noopener noreferrer">
+                    The Herd (Iced Out Coin Flip)
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            
+            <!-- Card 5: MegaPython Legacy Pass -->
+            <div class="card">
+                <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" rel="noopener noreferrer">
+                    MegaPython Legacy Pass
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            
+            <!-- Card 6: Moerverse / Based Moer -->
+            <div class="card">
+                <a href="https://linktr.ee/basedmoer" target="_blank" rel="noopener noreferrer">
+                    Moerverse / Based Moer
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+            
+            <!-- Card 7: Based Ape Punks -->
+            <div class="card">
+                <a href="https://link.tr.ee/basedapepunks" target="_blank" rel="noopener noreferrer">
+                    Based Ape Punks
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+    
+    <!-- ONCYBER GALLERY SECTION -->
+    <section class="fade-in">
+        <h2>Oncyber Gallery</h2>
+        <div class="oncyber-container">
+            <!-- Oncyber iframe gallery -->
+            <iframe src="https://oncyber.io/moegallery" title="MoeR87 Oncyber Gallery" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+    
+    <!-- FOOTER SECTION -->
+    <footer class="fade-in">
+        <div class="social-links">
+            <a href="https://linktr.ee/MoeR87" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-tree"></i>
+                Linktree
+            </a>
+            <a href="https://x.com/MoeeR87" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i>
+                X (Twitter)
+            </a>
+        </div>
+        
+        <!-- Small personal image -->
+        <div class="personal-image">
+            <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="MoeR87">
+        </div>
+        
+        <p class="copyright">© 2023 MoeR87. All pixel art created with passion, one pixel at a time.</p>
+    </footer>
 
-  <!-- Drops & Partnerships -->
-  <section id="drops" class="section">
-    <div class="container">
-      <h2 class="section-title">Drops & Partnerships</h2>
-      <div class="drops-grid">
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-tint"></i></div>
-          <h3 class="drop-title">DR!P Haus</h3>
-          <p class="drop-desc">Exclusive pixel art drops and collectibles</p>
-          <a href="https://drip.haus/moer87" target="_blank" class="drop-link">View Collection <i class="fas fa-arrow-right"></i></a>
-        </div>
+    <script>
+        // Array of IPFS CIDs for the art slider
+        const images = [
+            'bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4',
+            'bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu',
+            'bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4',
+            'bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la',
+            'bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu',
+            'bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe',
+            'bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee',
+            'bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm',
+            'bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe',
+            'bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu',
+            'bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy',
+            'bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe',
+            'bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e'
+        ];
         
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-dog"></i></div>
-          <h3 class="drop-title">Famous Pixel Dogs</h3>
-          <p class="drop-desc">Iconic dogs reimagined in pixel art form</p>
-          <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" class="drop-link">OpenSea <i class="fas fa-arrow-right"></i></a>
-        </div>
+        const slider = document.getElementById('slider');
         
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-ape"></i></div>
-          <h3 class="drop-title">Ape Punks</h3>
-          <p class="drop-desc">Polygon-based pixel ape collection</p>
-          <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" class="drop-link">OpenSea <i class="fas fa-arrow-right"></i></a>
-        </div>
-        
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-users"></i></div>
-          <h3 class="drop-title">The Herd</h3>
-          <p class="drop-desc">Community-driven pixel art project</p>
-          <a href="https://opensea.io/collection/the-herd-4" target="_blank" class="drop-link">OpenSea <i class="fas fa-arrow-right"></i></a>
-        </div>
-        
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-music"></i></div>
-          <h3 class="drop-title">.0xmusic Domains</h3>
-          <p class="drop-desc">Pixel art integration with music domains</p>
-          <a href="https://freename.io/discover/0xmusic" target="_blank" class="drop-link">Explore <i class="fas fa-arrow-right"></i></a>
-        </div>
-        
-        <div class="drop-card">
-          <div class="drop-icon"><i class="fas fa-crown"></i></div>
-          <h3 class="drop-title">MegaPython Legacy</h3>
-          <p class="drop-desc">Exclusive pass for early supporters</p>
-          <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" class="drop-link">Rarible <i class="fas fa-arrow-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="section">
-    <div class="container">
-      <h2 class="section-title">Oncyber Gallery</h2>
-      <div class="gallery-container">
-        <iframe src="https://oncyber.io/moegallery"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-logo">MoeR87</div>
-      <p class="footer-tagline">Building pixel art worlds, one frame at a time. Every pixel placed with purpose, every animation crafted with care.</p>
-      
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#drops">Drops</a>
-        <a href="#gallery">Gallery</a>
-        <a href="https://linktr.ee/MoeR87" target="_blank">Linktree</a>
-        <a href="https://x.com/MoeeR87" target="_blank">Twitter</a>
-      </div>
-      
-      <img class="signature" src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="Signature">
-      
-      <p class="copyright">© 2024 MoeR87. All pixels handcrafted.</p>
-    </div>
-  </footer>
-
-  <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if(targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if(targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 100,
-            behavior: 'smooth'
-          });
+        // Function to shuffle array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
         }
-      });
-    });
-
-    // Add scroll effect to header
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('header');
-      if(window.scrollY > 100) {
-        header.style.background = 'rgba(10, 10, 18, 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
-      } else {
-        header.style.background = 'rgba(10, 10, 18, 0.9)';
-      }
-    });
-
-    // Add pixel corners to project cards
-    document.querySelectorAll('.project-card').forEach(card => {
-      const corners = ['tl', 'tr', 'bl', 'br'];
-      corners.forEach(corner => {
-        const div = document.createElement('div');
-        div.className = `pixel-corner ${corner}`;
-        card.appendChild(div);
-      });
-    });
-
-    // Animate elements on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+        
+        // Create infinite scrolling slider
+        function initializeSlider() {
+            // Shuffle the images
+            const shuffled = shuffleArray([...images]);
+            
+            // Duplicate the shuffled array for infinite scroll effect
+            const doubled = [...shuffled, ...shuffled];
+            
+            // Create slider items
+            doubled.forEach(cid => {
+                const sliderItem = document.createElement('div');
+                sliderItem.className = 'slider-item';
+                
+                const img = document.createElement('img');
+                img.src = `https://gateway.pinata.cloud/ipfs/${cid}`;
+                img.alt = "MoeR87 Pixel Art";
+                img.loading = "lazy";
+                
+                sliderItem.appendChild(img);
+                slider.appendChild(sliderItem);
+            });
         }
-      });
-    }, observerOptions);
-
-    // Observe elements for animation
-    document.querySelectorAll('.skill-item, .project-card, .drop-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
+        
+        // Intersection Observer for fade-in animations
+        function setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            // Observe all elements with fade-in class
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeSlider();
+            setupIntersectionObserver();
+            
+            // Add smooth hover effect to cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Force all external links to open in new tab (safety measure)
+            document.querySelectorAll('a').forEach(link => {
+                if (link.hostname !== window.location.hostname) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
+        });
+        
+        // Pause slider animation on hover
+        const sliderWrapper = document.querySelector('.slider-wrapper');
+        sliderWrapper.addEventListener('mouseenter', () => {
+            sliderWrapper.style.animationPlayState = 'paused';
+        });
+        
+        sliderWrapper.addEventListener('mouseleave', () => {
+            sliderWrapper.style.animationPlayState = 'running';
+        });
+    </script>
 </body>
 </html>
