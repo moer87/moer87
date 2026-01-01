@@ -72,7 +72,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 20, 0.9);
+            background: rgba(10, 10, 20, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             height: var(--nav-height);
@@ -150,7 +150,7 @@
             cursor: pointer;
         }
         
-        /* Section styles - reduced spacing */
+        /* Section styles */
         section {
             padding: var(--section-spacing) 20px;
             max-width: 1200px;
@@ -408,18 +408,67 @@
             overflow: hidden;
             margin-bottom: 30px;
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a14;
         }
         
         .building-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 20px;
+        }
+        
+        .building-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .building-content h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
             color: var(--accent);
+        }
+        
+        .building-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .building-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            flex: 1;
+        }
+        
+        .building-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(107,138,255,0.3);
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+        
+        .building-button.secondary {
+            background: rgba(107,138,255,0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .building-button.secondary:hover {
+            background: rgba(107,138,255,0.2);
         }
         
         /* DROPS & PARTNERSHIPS SECTION */
@@ -449,15 +498,24 @@
         }
         
         .card-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: rgba(26,26,46,0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
             flex-shrink: 0;
+            overflow: hidden;
+            border: 1px solid rgba(107,138,255,0.2);
+        }
+        
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
         }
         
         .card-content {
@@ -640,6 +698,14 @@
                 width: 100%;
                 max-width: 400px;
             }
+            
+            .building-buttons {
+                flex-direction: column;
+            }
+            
+            .building-button {
+                width: 100%;
+            }
         }
         
         @media (max-width: 768px) {
@@ -687,6 +753,17 @@
                 font-size: 1rem;
             }
             
+            .card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            
+            .card-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
             /* Mobile navigation */
             .mobile-menu-btn {
                 display: block;
@@ -697,7 +774,7 @@
                 top: var(--nav-height);
                 left: 0;
                 width: 100%;
-                background: rgba(10, 10, 20, 0.95);
+                background: rgba(10, 10, 20, 0.98);
                 backdrop-filter: blur(10px);
                 flex-direction: column;
                 padding: 20px;
@@ -707,6 +784,7 @@
                 visibility: hidden;
                 transition: all 0.3s ease;
                 border-top: 1px solid rgba(107,138,255,0.1);
+                z-index: 999;
             }
             
             .nav-links.active {
@@ -759,6 +837,29 @@
             
             .about-image {
                 height: 250px;
+            }
+            
+            .building-image {
+                height: 250px;
+            }
+            
+            .about {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .slider-item {
+                width: 140px;
+                height: 140px;
             }
         }
         
@@ -863,9 +964,7 @@
     <section class="about fade-in" id="about">
         <div class="section-header">
             <div class="section-title">
-                <div class="pixel-icon">
-                    <i class="fas fa-user"></i>
-                </div>
+                <!-- Removed the pixel icon as requested -->
                 <h2>About — MoeR87</h2>
             </div>
         </div>
@@ -919,19 +1018,26 @@
                 <div class="building-content">
                     <h3>Based Moer</h3>
                     <p>A living pixel identity and narrative universe on the Base blockchain. The Moerverse is built as a network of interconnected characters and storylines, starting with the 222-piece Bald Moe collection representing fragmented dream memories.</p>
+                    <div class="building-buttons">
+                        <a href="https://based-moer.vercel.app/" class="building-button" target="_blank" rel="noopener noreferrer">
+                            Visit Based Moer
+                        </a>
+                    </div>
                 </div>
             </div>
             
             <div class="building-item">
+                <div class="building-image">
+                    <img src="https://gateway.pinata.cloud/ipfs/bafybeighcgjocs6kewtvwd6nxbmc5x3ptqtx24bnxew736g2f3elbymgza" alt="Based Ape Punks">
+                </div>
                 <div class="building-content">
                     <h3>Based Ape Punks</h3>
                     <p>The animated Gen 2 evolution of Polygon Ape Punks. In the Moerverse, these characters function as space travelers, moving between universes, encountering allies and adversaries, and expanding the narrative beyond a single point of view.</p>
-                    <a href="https://link.tr.ee/basedapepunks" class="card-link" target="_blank" rel="noopener noreferrer">
-                        Explore Based Ape Punks <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                <div class="building-image">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu" alt="Based Ape Punks">
+                    <div class="building-buttons">
+                        <a href="https://linktr.ee/basedapepunks" class="building-button" target="_blank" rel="noopener noreferrer">
+                            Explore Based Ape Punks
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -945,7 +1051,7 @@
             <!-- Card 1: MOER87 on DR!P Haus -->
             <div class="card">
                 <div class="card-icon">
-                    <i class="fas fa-tint"></i>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreicxkvxp4nafllca3msp2a7r6r6ph2ct25kzk74qev7nc5qfhafeli" alt="DR!P Haus Logo">
                 </div>
                 <div class="card-content">
                     <a href="https://drip.haus/moer87" target="_blank" rel="noopener noreferrer">
@@ -957,7 +1063,7 @@
             <!-- Card 2: Famous Pixel Dogs -->
             <div class="card">
                 <div class="card-icon">
-                    <i class="fas fa-dog"></i>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafybeigq65kclpl6wysx4fjktc2w46zzboar3ttzpddedgee5drmyquut4" alt="Famous Pixel Dogs Logo">
                 </div>
                 <div class="card-content">
                     <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" rel="noopener noreferrer">
@@ -969,7 +1075,7 @@
             <!-- Card 3: Polygon Ape Punks -->
             <div class="card">
                 <div class="card-icon">
-                    <i class="fas fa-robot"></i>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreidxgjyiljl6qsasrqzb37rycfxmxho26pg5k5yxarplgioruy5hdq" alt="Polygon Ape Punks Logo">
                 </div>
                 <div class="card-content">
                     <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" rel="noopener noreferrer">
@@ -981,7 +1087,7 @@
             <!-- Card 4: The Herd (Iced Out Coin Flip) -->
             <div class="card">
                 <div class="card-icon">
-                    <i class="fas fa-coins"></i>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreieuqf744hglrvquy56thkq2vypxnfuy3ac3aktzpllh2bxf7q6t3y" alt="The Herd Logo">
                 </div>
                 <div class="card-content">
                     <a href="https://opensea.io/collection/the-herd-4" target="_blank" rel="noopener noreferrer">
@@ -993,7 +1099,7 @@
             <!-- Card 5: MegaPython Legacy Pass -->
             <div class="card">
                 <div class="card-icon">
-                    <i class="fas fa-crown"></i>
+                    <img src="https://gateway.pinata.cloud/ipfs/bafkreidetdkpo52f6hri32qfyqddoy46kncd3vt36mvclkgmzqizoqcjei" alt="MegaPython Logo">
                 </div>
                 <div class="card-content">
                     <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" rel="noopener noreferrer">
@@ -1139,6 +1245,14 @@
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
         }
         
         // Add hover effect to cards
@@ -1189,6 +1303,24 @@
             });
         }
         
+        // Preload images for better performance
+        function preloadImages() {
+            const imageUrls = [
+                'https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4',
+                'https://gateway.pinata.cloud/ipfs/bafybeighcgjocs6kewtvwd6nxbmc5x3ptqtx24bnxew736g2f3elbymgza',
+                'https://gateway.pinata.cloud/ipfs/bafkreicxkvxp4nafllca3msp2a7r6r6ph2ct25kzk74qev7nc5qfhafeli',
+                'https://gateway.pinata.cloud/ipfs/bafybeigq65kclpl6wysx4fjktc2w46zzboar3ttzpddedgee5drmyquut4',
+                'https://gateway.pinata.cloud/ipfs/bafkreidxgjyiljl6qsasrqzb37rycfxmxho26pg5k5yxarplgioruy5hdq',
+                'https://gateway.pinata.cloud/ipfs/bafkreieuqf744hglrvquy56thkq2vypxnfuy3ac3aktzpllh2bxf7q6t3y',
+                'https://gateway.pinata.cloud/ipfs/bafkreidetdkpo52f6hri32qfyqddoy46kncd3vt36mvclkgmzqizoqcjei'
+            ];
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
+        
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
             initializeSlider();
@@ -1199,9 +1331,21 @@
             setupExternalLinks();
             addPixelTextEffects();
             setupSliderHover();
+            preloadImages();
             
             // Set page title with pixel art effect
             document.title = "MoeR87 — Pixel Storyteller";
+        });
+        
+        // Handle window resize for better mobile experience
+        window.addEventListener('resize', () => {
+            // Close mobile menu on resize to desktop
+            if (window.innerWidth > 768) {
+                const navLinks = document.getElementById('navLinks');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
         });
     </script>
 </body>
