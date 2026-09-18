@@ -1,1352 +1,2701 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MoeR87 — Pixel Storyteller</title>
-    
-    <!-- Update the favicon and title bar icon -->
-    <link rel="icon" type="image/x-icon" href="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
-    <link rel="apple-touch-icon" href="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa">
-    <meta name="description" content="MoeR87 - Independent pixel artist, animator, and Web3 creator building narrative-driven pixel worlds across blockchain networks.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg: #0a0a14;
-            --primary: #6b8aff;
-            --secondary: #ff66d9;
-            --accent: #00f0c8;
-            --text: #f0f0ff;
-            --card: #1a1a2e;
-            --shadow: rgba(107,138,255,0.15);
-            --radius: 20px;
-            --nav-height: 80px;
-            --section-spacing: 70px;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(107,138,255,0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(255,102,217,0.05) 0%, transparent 20%);
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--nav-height);
-        }
-        
-        /* Pixel grid background */
-        .pixel-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(107,138,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(107,138,255,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            height: var(--nav-height);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            border-bottom: 1px solid rgba(107,138,255,0.1);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-        
-        .logo {
-            font-weight: 900;
-            font-size: 1.5rem;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: url('https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa') center/cover;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 8px 16px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .nav-links a:hover {
-            background: rgba(107,138,255,0.1);
-            color: var(--primary);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 20px;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Section styles */
-        section {
-            padding: var(--section-spacing) 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-        
-        h1, h2, h3 {
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            bottom: -10px;
-            left: 0;
-            border-radius: 2px;
-        }
-        
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 40px;
-        }
-        
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .pixel-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding-top: 140px;
-            padding-bottom: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .pfp-container {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 40px;
-        }
-        
-        .pfp {
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-            background: url('https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa') center/cover no-repeat;
-            box-shadow: 0 20px 40px rgba(107,138,255,0.3);
-            border: 5px solid rgba(255,255,255,0.1);
-            position: relative;
-            z-index: 2;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-        
-        .pfp:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 30px 60px rgba(107,138,255,0.4);
-        }
-        
-        .pfp-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.2;
-            filter: blur(20px);
-            z-index: 1;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .hero-tagline {
-            font-size: 1.1rem;
-            color: rgba(240,240,255,0.8);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        /* ART SLIDER */
-        .slider-container {
-            overflow: hidden;
-            width: 100%;
-            margin: 40px 0;
-            position: relative;
-            border-radius: var(--radius);
-            background: rgba(26,26,46,0.5);
-            padding: 20px 0;
-        }
-        
-        .slider-wrapper {
-            display: flex;
-            width: max-content;
-            animation: scroll 30s linear infinite;
-        }
-        
-        .slider-wrapper:hover {
-            animation-play-state: paused;
-        }
-        
-        .slider-item {
-            width: 220px;
-            height: 220px;
-            margin: 0 15px;
-            flex-shrink: 0;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-        
-        .slider-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(107,138,255,0.3);
-        }
-        
-        .slider-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        /* ABOUT SECTION */
-        .about {
-            background: rgba(26,26,46,0.7);
-            border-radius: var(--radius);
-            padding: 60px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(107,138,255,0.1);
-        }
-        
-        .about-images {
-            display: flex;
-            gap: 30px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .about-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        
-        .about-image:hover {
-            transform: translateY(-10px);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* CURRENTLY BUILDING SECTION */
-        .currently-building {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .building-item {
-            background: rgba(26,26,46,0.7);
-            border-radius: var(--radius);
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            border: 1px solid rgba(107,138,255,0.1);
-            height: 100%;
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .building-item:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-        
-        .building-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0a0a14;
-        }
-        
-        .building-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 20px;
-        }
-        
-        .building-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .building-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        
-        .building-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .building-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            flex: 1;
-        }
-        
-        .building-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(107,138,255,0.3);
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-        }
-        
-        .building-button.secondary {
-            background: rgba(107,138,255,0.1);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-        
-        .building-button.secondary:hover {
-            background: rgba(107,138,255,0.2);
-        }
-        
-        /* DROPS & PARTNERSHIPS SECTION */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .card {
-            background: rgba(26,26,46,0.7);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(107,138,255,0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 40px rgba(107,138,255,0.2);
-            border-color: var(--primary);
-        }
-        
-        .card-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background: rgba(26,26,46,0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            overflow: hidden;
-            border: 1px solid rgba(107,138,255,0.2);
-        }
-        
-        .card-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 8px;
-        }
-        
-        .card-content {
-            flex: 1;
-        }
-        
-        .card a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: block;
-            transition: color 0.3s ease;
-        }
-        
-        .card a:hover {
-            color: var(--accent);
-        }
-        
-        .card-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 8px;
-        }
-        
-        /* ONCYBER GALLERY */
-        .oncyber-container {
-            background: rgba(26,26,46,0.7);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
-            border: 1px solid rgba(107,138,255,0.1);
-        }
-        
-        .oncyber-container iframe {
-            width: 100%;
-            height: 500px;
-            border-radius: 16px;
-            border: none;
-        }
-        
-        /* FOOTER */
-        footer {
-            padding: 60px 20px;
-            text-align: center;
-            background: rgba(10,10,20,0.9);
-            margin-top: 40px;
-            border-top: 1px solid rgba(107,138,255,0.1);
-            position: relative;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 12px 24px;
-            border-radius: 50px;
-            background: rgba(26,26,46,0.7);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(107,138,255,0.1);
-        }
-        
-        .social-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(107,138,255,0.2);
-            color: var(--accent);
-            border-color: var(--primary);
-        }
-        
-        .personal-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            margin: 40px auto 0;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            overflow: hidden;
-            opacity: 0.9;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            border: 3px solid rgba(107,138,255,0.3);
-        }
-        
-        .personal-image:hover {
-            transform: scale(1.05);
-            opacity: 1;
-            border-color: var(--accent);
-        }
-        
-        .personal-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .copyright {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: rgba(240,240,255,0.6);
-        }
-        
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 1.2rem;
-            box-shadow: 0 10px 20px rgba(107,138,255,0.3);
-            transition: all 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 100;
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
-            .cards {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-            
-            .currently-building {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .about-images {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .about-image {
-                width: 100%;
-                max-width: 400px;
-            }
-            
-            .building-buttons {
-                flex-direction: column;
-            }
-            
-            .building-button {
-                width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.4rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            section {
-                padding: 50px 20px;
-            }
-            
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 60px;
-            }
-            
-            .pfp-container {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .about, .building-item, .card, .oncyber-container {
-                padding: 30px 20px;
-            }
-            
-            .slider-item {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .oncyber-container iframe {
-                height: 400px;
-            }
-            
-            .social-links {
-                gap: 15px;
-            }
-            
-            .social-link {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-            
-            .card {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            
-            .card-icon {
-                width: 80px;
-                height: 80px;
-            }
-            
-            /* Mobile navigation */
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: var(--nav-height);
-                left: 0;
-                width: 100%;
-                background: rgba(10, 10, 20, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 20px;
-                gap: 10px;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                border-top: 1px solid rgba(107,138,255,0.1);
-                z-index: 999;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .nav-links a {
-                padding: 15px;
-                text-align: center;
-                border-radius: 10px;
-                background: rgba(26,26,46,0.5);
-            }
-        }
-        
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .slider-item {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .oncyber-container iframe {
-                height: 350px;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .social-link {
-                width: 100%;
-                max-width: 250px;
-                justify-content: center;
-            }
-            
-            .about-image {
-                height: 250px;
-            }
-            
-            .building-image {
-                height: 250px;
-            }
-            
-            .about {
-                padding: 30px 20px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.6rem;
-            }
-            
-            .slider-item {
-                width: 140px;
-                height: 140px;
-            }
-        }
-        
-        /* Animation for sections on scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Pixel art styling for text highlights */
-        .pixel-text {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 10px rgba(0,240,200,0.3);
-        }
-        
-        /* Pixel divider */
-        .pixel-divider {
-            height: 4px;
-            width: 100px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            margin: 40px auto;
-            position: relative;
-        }
-        
-        .pixel-divider::before, .pixel-divider::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 2px;
-            top: -2px;
-        }
-        
-        .pixel-divider::before {
-            left: -4px;
-        }
-        
-        .pixel-divider::after {
-            right: -4px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Pixel grid background -->
-    <div class="pixel-grid"></div>
-    
-    <!-- Navigation -->
-    <nav>
-        <a href="#home" class="logo">
-            <div class="logo-icon"></div>
-            MoeR87
-        </a>
-        
-        <div class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#currently-building">Currently Building</a>
-            <a href="#drops">Drops & Partnerships</a>
-            <a href="#gallery">Gallery</a>
-        </div>
-        
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
-    
-    <!-- Back to top button -->
-    <a href="#home" class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-    
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-content fade-in">
-            <div class="pfp-container">
-                <div class="pfp-glow"></div>
-                <div class="pfp"></div>
-            </div>
-            <h1>MoeR87 — Pixel Storyteller</h1>
-            <p class="hero-subtitle">Creating handcrafted pixel adventures and worlds</p>
-            <p class="hero-tagline">Self-taught pixel artist, animator, and Web3 creator building immersive pixel universes across Ethereum, Polygon, Monad, Base, and Solana.</p>
-        </div>
-    </section>
-    
-    <!-- ART SLIDER -->
-    <div class="slider-container">
-        <div class="slider-wrapper" id="slider"></div>
-    </div>
-    
-    <!-- ABOUT SECTION -->
-    <section class="about fade-in" id="about">
-        <div class="section-header">
-            <div class="section-title">
-                <!-- Removed the pixel icon as requested -->
-                <h2>About — MoeR87</h2>
-            </div>
-        </div>
-        
-        <p>I'm <span class="pixel-text">Mohammadreza</span>, known artistically as <span class="pixel-text">MoeR87</span> — an independent pixel artist, animator, and Web3 creator working at the intersection of art, games, and blockchain-native worlds.</p>
-        
-        <p>My creative path didn't start with NFTs. It started with drawing.</p>
-        
-        <p>As a kid, I spent years sketching the human body by hand, studying anatomy through repetition and observation. Pencil drawing taught me structure, proportion, and movement long before I ever touched digital tools. Around the same time, games became a parallel education — not just playing, but living inside virtual systems. I grew up with online and competitive games like Counter-Strike, World of Warcraft, and DOTA, with a deep preference for MMORPGs: persistent worlds, evolving characters, shared economies, and long-form identity.</p>
-        
-        <p>In the early 2000s, I entered my first public creative phase through music. Around 2004, under the alias FUAN and as part of Diminished Hip Hop, I released music independently across early digital platforms such as SoundClick, ReverbNation, SoundCloud, Mixcloud, Last.fm, MySpace, and Vimeo. This was a pre-algorithm era of the internet, where creators built presence without permission. Music shaped how I think about rhythm, pacing, atmosphere, and emotional weight — qualities that later became central to my visual and animated work.</p>
-        
-        <div class="about-images">
-            <div class="about-image">
-                <img src="https://gateway.pinata.cloud/ipfs/bafkreihctlww6q3rahpj6w2ojfwhkimihq2ble6ujkyx5tnngfi4a7evb4" alt="MoeR87 Artwork">
-            </div>
-            <div class="about-image">
-                <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="MoeR87 Artwork">
-            </div>
-        </div>
-        
-        <p>I discovered blockchain technology in 2018. What drew me in wasn't speculation, but ownership — the idea that digital objects could persist, move freely, and belong to users rather than platforms. My entry into NFTs didn't come through art, but through games. Around 2020, I began testing blockchain games on the Enjin ecosystem, collecting in-game NFT assets, trading them on marketplaces, and selling them for ENJ tokens. This is where my NFT journey truly began: not as collectibles, but as functional digital assets inside living systems.</p>
-        
-        <p>By 2022, I shifted from collecting to creating. I chose pixel art as my primary medium because it sits at the exact intersection of everything I had learned — drawing fundamentals, animation, game aesthetics, and technical constraint. Pixel art demands intention. Every pixel must earn its place. I taught myself animation and released my first hand-drawn animated pixel collection, Famous Pixel Dogs, followed by continued releases of both collections and single works across OpenSea, Rarible, TofuNFT, and other platforms.</p>
-        
-        <p>In 2023, I released Polygon Ape Punks, a 10,000-piece pixel collection on Polygon, which sold out. Around the same time, I participated as a pixel artist in one of the earliest interchangeable-art smart contracts on Polygon with The Herd by Iced Out Coin Flip, transforming existing 2D artworks into animated pixel versions that holders could dynamically switch between. This reinforced my interest in NFTs as modular, evolving objects rather than static images.</p>
-        
-        <p>Since then, my work has expanded across Ethereum, Polygon, Solana, Monad, Base, and multiple testnets. I've released work on Zora, OpenSea, Rarible, DRiP Haus, and crypto-native platforms, while also deploying full experimental collections on testnets such as MegaETH, contributing pieces to Pharos, and producing multiple drops on Monad. I operate hands-on — designing art, animation, narrative, drops, metadata, websites, wallets, and releases myself.</p>
-        
-        <p>My current focus is Based Moer, a pixel art project on the Base blockchain, set within a larger narrative universe called the Moerverse. The Moerverse is built as a network of interconnected characters and storylines rather than a single collection. Its first core character, Bald Moe, is a self-referential avatar based on my own identity. The 222-piece Bald Moe collection represents fragmented dream memories, with 21 legendary pieces depicting vivid, clearly remembered dream states — each one a different version of the same consciousness.</p>
-        
-        <p>Running parallel to this is Based Ape Punks, the animated Gen 2 evolution of Polygon Ape Punks. In the Moerverse, these characters function as space travelers, moving between universes, encountering allies and adversaries, and expanding the narrative beyond a single point of view. Future releases include additional characters, free-to-mint drops for holders, and ongoing pixel-based adventures, all designed to remain sustainable for a solo creator.</p>
-        
-        <p>I work as a dual-track creator: artist-first in vision, builder-artist in execution. I don't separate music, drawing, games, pixels, or blockchain into different careers — they are all expressions of the same lifelong creative impulse. Web3 simply gave me a medium where that continuity can exist without intermediaries.</p>
-        
-        <p><strong>Everything here is built independently. Slowly. Intentionally.</strong></p>
-    </section>
-    
-    <!-- Pixel divider -->
-    <div class="pixel-divider"></div>
-    
-    <!-- CURRENTLY BUILDING SECTION -->
-    <section class="fade-in" id="currently-building">
-        <h2>Currently Building</h2>
-        
-        <div class="currently-building">
-            <div class="building-item">
-                <div class="building-image">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4" alt="Based Moer">
-                </div>
-                <div class="building-content">
-                    <h3>Based Moer</h3>
-                    <p>A living pixel identity and narrative universe on the Base blockchain. The Moerverse is built as a network of interconnected characters and storylines, starting with the 222-piece Bald Moe collection representing fragmented dream memories.</p>
-                    <div class="building-buttons">
-                        <a href="https://based-moer.vercel.app/" class="building-button" target="_blank" rel="noopener noreferrer">
-                            Visit Based Moer
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="building-item">
-                <div class="building-image">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafybeighcgjocs6kewtvwd6nxbmc5x3ptqtx24bnxew736g2f3elbymgza" alt="Based Ape Punks">
-                </div>
-                <div class="building-content">
-                    <h3>Based Ape Punks</h3>
-                    <p>The animated Gen 2 evolution of Polygon Ape Punks. In the Moerverse, these characters function as space travelers, moving between universes, encountering allies and adversaries, and expanding the narrative beyond a single point of view.</p>
-                    <div class="building-buttons">
-                        <a href="https://linktr.ee/basedapepunks" class="building-button" target="_blank" rel="noopener noreferrer">
-                            Explore Based Ape Punks
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- DROPS & PARTNERSHIPS SECTION -->
-    <section class="fade-in" id="drops">
-        <h2>Drops & Partnerships</h2>
-        
-        <div class="cards">
-            <!-- Card 1: MOER87 on DR!P Haus -->
-            <div class="card">
-                <div class="card-icon">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafkreicxkvxp4nafllca3msp2a7r6r6ph2ct25kzk74qev7nc5qfhafeli" alt="DR!P Haus Logo">
-                </div>
-                <div class="card-content">
-                    <a href="https://drip.haus/moer87" target="_blank" rel="noopener noreferrer">
-                        MOER87 on DR!P Haus
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Card 2: Famous Pixel Dogs -->
-            <div class="card">
-                <div class="card-icon">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafybeigq65kclpl6wysx4fjktc2w46zzboar3ttzpddedgee5drmyquut4" alt="Famous Pixel Dogs Logo">
-                </div>
-                <div class="card-content">
-                    <a href="https://opensea.io/collection/famouspixeldogs" target="_blank" rel="noopener noreferrer">
-                        Famous Pixel Dogs
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Card 3: Polygon Ape Punks -->
-            <div class="card">
-                <div class="card-icon">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafkreidxgjyiljl6qsasrqzb37rycfxmxho26pg5k5yxarplgioruy5hdq" alt="Polygon Ape Punks Logo">
-                </div>
-                <div class="card-content">
-                    <a href="https://opensea.io/collection/polygon-ape-punks-club" target="_blank" rel="noopener noreferrer">
-                        Polygon Ape Punks
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Card 4: The Herd (Iced Out Coin Flip) -->
-            <div class="card">
-                <div class="card-icon">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafkreieuqf744hglrvquy56thkq2vypxnfuy3ac3aktzpllh2bxf7q6t3y" alt="The Herd Logo">
-                </div>
-                <div class="card-content">
-                    <a href="https://opensea.io/collection/the-herd-4" target="_blank" rel="noopener noreferrer">
-                        The Herd (Iced Out Coin Flip)
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Card 5: MegaPython Legacy Pass -->
-            <div class="card">
-                <div class="card-icon">
-                    <img src="https://gateway.pinata.cloud/ipfs/bafkreidetdkpo52f6hri32qfyqddoy46kncd3vt36mvclkgmzqizoqcjei" alt="MegaPython Logo">
-                </div>
-                <div class="card-content">
-                    <a href="https://rarible.com/megaethtestnet/collections/0x3eb797167859ae79fe5f347a1e102ef5d2114ff4" target="_blank" rel="noopener noreferrer">
-                        MegaPython Legacy Pass
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- ONCYBER GALLERY SECTION -->
-    <section class="fade-in" id="gallery">
-        <h2>Oncyber Gallery</h2>
-        <div class="oncyber-container">
-            <iframe src="https://oncyber.io/moegallery" title="MoeR87 Oncyber Gallery" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </section>
-    
-    <!-- FOOTER SECTION -->
-    <footer class="fade-in">
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://linktr.ee/MoeR87" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-tree"></i>
-                    Linktree
-                </a>
-                <a href="https://x.com/MoeeR87" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-twitter"></i>
-                    X (Twitter)
-                </a>
-            </div>
-            
-            <!-- Small personal image -->
-            <div class="personal-image">
-                <img src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i" alt="MoeR87">
-            </div>
-            
-            <p class="copyright">© 2024 MoeR87. All pixel art created with passion, one pixel at a time.</p>
-            <p class="copyright">Built independently. Slowly. Intentionally.</p>
-        </div>
-    </footer>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#0d1020" name="theme-color"/>
+<title>MoeR87 — Pixel Artist, Animator &amp; Web3 Creator</title>
+<meta content="The personal portfolio of Mohammadreza Eslami (MoeR87): pixel artist, animator and Web3 creator building onchain collections, digital experiences and creator-led projects." name="description"/>
+<meta content="MoeR87 — Pixel Artist, Animator &amp; Web3 Creator" property="og:title"/>
+<meta content="Pixel art, animation, Web3 projects and onchain experiences across Base, Robinhood Chain and other networks." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://moer87.vercel.app/" property="og:url"/>
+<meta content="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="https://moer87.vercel.app/" rel="canonical"/>
+<link href="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa" rel="icon"/>
 
-    <script>
-        // Array of IPFS CIDs for the art slider
-        const images = [
-            'bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4',
-            'bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu',
-            'bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4',
-            'bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la',
-            'bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu',
-            'bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe',
-            'bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee',
-            'bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm',
-            'bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe',
-            'bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu',
-            'bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy',
-            'bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe',
-            'bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e'
-        ];
-        
-        const slider = document.getElementById('slider');
-        
-        // Function to shuffle array
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+<style>
+    :root {
+      --ink: #101322;
+      --ink-soft: #34384c;
+      --paper: #f3eedf;
+      --paper-2: #fffaf0;
+      --night: #0d1020;
+      --night-2: #15192d;
+      --blue: #5567ff;
+      --cyan: #48e0d0;
+      --pink: #ff6db4;
+      --yellow: #ffc857;
+      --line: rgba(16, 19, 34, .15);
+      --line-dark: rgba(255, 255, 255, .12);
+      --radius: 20px;
+      --shadow: 0 18px 0 rgba(16,19,34,.08);
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .24;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(16,19,34,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,19,34,.055) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .pixel-font {
+      font-family: "Courier New", ui-monospace, monospace;
+      letter-spacing: .04em;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-family: "Courier New", ui-monospace, monospace;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "■";
+      color: var(--pink);
+      font-size: .7rem;
+    }
+
+    /* NAVIGATION */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(13,16,32,.93);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      image-rendering: pixelated;
+      border-radius: 9px;
+      border: 2px solid rgba(255,255,255,.22);
+    }
+
+    .brand small {
+      display: block;
+      font-family: "Courier New", ui-monospace, monospace;
+      font-size: .63rem;
+      color: rgba(255,255,255,.58);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .navlinks a {
+      color: rgba(255,255,255,.84);
+      text-decoration: none;
+      font-size: .86rem;
+      font-weight: 750;
+      padding: 9px 12px;
+      border-radius: 10px;
+    }
+
+    .navlinks a:hover {
+      background: rgba(255,255,255,.08);
+      color: white;
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(72,224,208,.45);
+      color: var(--cyan) !important;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: transparent;
+      color: white;
+      border-radius: 10px;
+      width: 44px;
+      height: 42px;
+      font-size: 1.15rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(85,103,255,.35), transparent 32%),
+        radial-gradient(circle at 20% 85%, rgba(255,109,180,.19), transparent 31%),
+        var(--night);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      gap: 72px;
+      align-items: center;
+      min-height: 720px;
+      padding: 90px 0 82px;
+    }
+
+    .hero h1 {
+      margin: 16px 0 22px;
+      max-width: 850px;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: .93;
+      letter-spacing: -.065em;
+    }
+
+    .hero h1 span {
+      color: var(--cyan);
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      color: rgba(255,255,255,.75);
+      font-size: clamp(1rem, 1.8vw, 1.23rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 2px solid var(--ink);
+      text-decoration: none;
+      font-weight: 850;
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translate(2px,2px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .btn.primary {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .btn.light {
+      background: white;
+      color: var(--ink);
+    }
+
+    .btn.dark {
+      background: var(--night);
+      color: white;
+      border-color: var(--night);
+      box-shadow: 4px 4px 0 rgba(85,103,255,.34);
+    }
+
+    .btn.ghost {
+      color: white;
+      border-color: rgba(255,255,255,.23);
+      background: rgba(255,255,255,.04);
+      box-shadow: none;
+    }
+
+    .btn.ghost:hover {
+      background: rgba(255,255,255,.09);
+      transform: none;
+    }
+
+    .hero-card-wrap {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      border: 2px solid rgba(255,255,255,.16);
+      border-radius: 26px;
+      padding: 18px;
+      background: rgba(255,255,255,.055);
+      box-shadow: 18px 18px 0 rgba(85,103,255,.12);
+      transform: rotate(2.4deg);
+    }
+
+    .hero-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      image-rendering: pixelated;
+      border-radius: 16px;
+      background: var(--night-2);
+    }
+
+    .hero-card figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+      padding: 16px 4px 1px;
+      color: rgba(255,255,255,.72);
+      font-family: "Courier New", ui-monospace, monospace;
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .sticker {
+      position: absolute;
+      right: -22px;
+      top: -25px;
+      display: grid;
+      place-items: center;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--cyan);
+      border: 3px solid var(--ink);
+      box-shadow: 7px 7px 0 var(--ink);
+      font-family: "Courier New", monospace;
+      font-size: .72rem;
+      font-weight: 900;
+      text-align: center;
+      transform: rotate(9deg);
+    }
+
+    /* TICKER */
+
+    .ticker {
+      overflow: hidden;
+      border-bottom: 2px solid var(--ink);
+      background: var(--yellow);
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      gap: 0;
+      animation: ticker 32s linear infinite;
+    }
+
+    .ticker-track span {
+      display: inline-flex;
+      align-items: center;
+      height: 46px;
+      padding: 0 24px;
+      font-family: "Courier New", ui-monospace, monospace;
+      font-weight: 900;
+      font-size: .8rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ticker-track span::after {
+      content: "✦";
+      margin-left: 28px;
+    }
+
+    @keyframes ticker {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .65fr);
+      gap: 50px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-head h2 {
+      margin: 6px 0 0;
+      font-size: clamp(2.3rem, 5vw, 4.7rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+
+    /* ABOUT */
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .portrait-stack {
+      position: sticky;
+      top: 105px;
+    }
+
+    .portrait-frame {
+      background: var(--paper-2);
+      padding: 12px 12px 44px;
+      border: 2px solid var(--ink);
+      box-shadow: 10px 10px 0 var(--ink);
+      transform: rotate(-1.6deg);
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+
+    .portrait-frame strong {
+      display: block;
+      margin: 14px 0 -24px;
+      text-align: center;
+      font-family: "Courier New", monospace;
+      font-size: .86rem;
+      letter-spacing: .06em;
+    }
+
+    .intro-copy {
+      font-size: 1.08rem;
+    }
+
+    .intro-copy p:first-child {
+      font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+      line-height: 1.42;
+    }
+
+    /* CURRENT PROJECTS */
+
+    .now {
+      color: white;
+      background: var(--night);
+    }
+
+    .now .section-head p {
+      color: rgba(255,255,255,.68);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--cyan);
+      font-size: .75rem;
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(72,224,208,.11);
+    }
+
+    .project-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .project-panel {
+      overflow: hidden;
+      border: 1px solid var(--line-dark);
+      border-radius: var(--radius);
+      background: var(--night-2);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+    }
+
+    .project-panel-media {
+      height: 330px;
+      min-height: 330px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line-dark);
+      background: #090b15;
+    }
+
+    .project-panel-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 24px;
+      image-rendering: pixelated;
+    }
+
+    .project-panel-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-panel-body .hero-actions {
+      margin-top: auto;
+    }
+
+    .project-panel-body h3 {
+      margin: 8px 0 11px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+    }
+
+    .project-panel-body p {
+      color: rgba(255,255,255,.7);
+      margin: 0 0 18px;
+    }
+
+    .project-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 22px;
+    }
+
+    .project-fact {
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.05);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font: 800 .68rem "Courier New", monospace;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.84);
+    }
+
+    /* H00DEXE OFFICIAL WEBSITE PREVIEW */
+
+    .site-preview {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #080a11;
+      overflow: hidden;
+    }
+
+    .site-preview iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      pointer-events: none;
+      background: #080a11;
+    }
+
+    .site-preview-bar {
+      position: absolute;
+      z-index: 2;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 9px;
+      background: rgba(10,12,20,.88);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.72);
+      font: 700 .68rem "Courier New", monospace;
+      letter-spacing: .03em;
+    }
+
+    .site-preview-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+    }
+
+    .preview-fallback {
+      position: absolute;
+      inset: auto 14px 14px 14px;
+      z-index: 3;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .preview-fallback span {
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: rgba(10,12,20,.84);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.60);
+      font: 700 .65rem "Courier New", monospace;
+    }
+
+    /* JOURNEY */
+
+    .timeline {
+      position: relative;
+      margin-top: 42px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      bottom: 8px;
+      left: 92px;
+      width: 2px;
+      background: var(--ink);
+    }
+
+    .year-row {
+      position: relative;
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 34px;
+      padding: 0 0 38px;
+    }
+
+    .year-row:last-child {
+      padding-bottom: 0;
+    }
+
+    .year {
+      position: relative;
+      font-family: "Courier New", monospace;
+      font-weight: 900;
+      font-size: .92rem;
+      padding-top: 2px;
+    }
+
+    .year::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      right: -8px;
+      top: 5px;
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      transform: rotate(45deg);
+    }
+
+    .year-copy h3 {
+      margin: 0 0 7px;
+      font-size: 1.25rem;
+    }
+
+    .year-copy p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+
+    /* SELECTED WORK */
+
+    .works {
+      background: var(--paper-2);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .work-card {
+      grid-column: span 6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      overflow: hidden;
+      height: 100%;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .work-card:hover {
+      transform: translate(-3px,-3px);
+      box-shadow: 13px 13px 0 rgba(16,19,34,.09);
+    }
+
+    .work-card.wide {
+      grid-column: span 12;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+    }
+
+    .work-visual {
+      height: 300px;
+      min-height: 300px;
+      background: var(--night);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .wide .work-visual {
+      height: auto;
+      min-height: 350px;
+      border-bottom: 0;
+      border-right: 2px solid var(--ink);
+    }
+
+    .work-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      padding: 24px;
+      image-rendering: pixelated;
+    }
+
+    .work-body {
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .work-body h3 {
+      margin: 6px 0 10px;
+      font-size: 1.55rem;
+    }
+
+    .work-body p {
+      margin: 0;
+      color: var(--ink-soft);
+    }
+
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 20px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-family: "Courier New", monospace;
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      background: var(--paper-2);
+    }
+
+    /* ART STRIP */
+
+    .art-strip {
+      overflow: hidden;
+      padding: 0;
+      background: var(--night);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .art-track {
+      display: flex;
+      width: max-content;
+      animation: artmove 38s linear infinite;
+    }
+
+    .art-track:hover {
+      animation-play-state: paused;
+    }
+
+    .art-track img {
+      width: 210px;
+      height: 210px;
+      object-fit: cover;
+      image-rendering: pixelated;
+      border-right: 2px solid var(--ink);
+    }
+
+    @keyframes artmove {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* BACKGROUND */
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .archive-card {
+      border: 2px solid var(--ink);
+      background: var(--paper-2);
+      padding: 24px;
+      min-height: 200px;
+      box-shadow: 6px 6px 0 rgba(16,19,34,.08);
+    }
+
+    .archive-card h3 {
+      margin: 8px 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .archive-card p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: .94rem;
+    }
+
+    /* ONCYBER — SINGLE GALLERY */
+
+    .gallery-section {
+      background: var(--paper);
+    }
+
+    .gallery-frame {
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      border-radius: 20px;
+      background: var(--night);
+      box-shadow: 10px 10px 0 rgba(16,19,34,.10);
+    }
+
+    .gallery-frame iframe {
+      display: block;
+      width: 100%;
+      height: clamp(460px, 68vh, 680px);
+      border: 0;
+      background: var(--night);
+    }
+
+    .gallery-action {
+      margin-top: 22px;
+    }
+
+    /* CONNECT */
+
+    .connect {
+      color: white;
+      background: var(--night);
+    }
+
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .connect h2 {
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+      margin: 8px 0 16px;
+    }
+
+    .connect p {
+      color: rgba(255,255,255,.7);
+      max-width: 620px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .link-card {
+      min-height: 110px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      text-decoration: none;
+      border-radius: 14px;
+    }
+
+    .link-card:hover {
+      border-color: var(--cyan);
+      background: rgba(72,224,208,.06);
+    }
+
+    .link-card strong {
+      font-size: .98rem;
+    }
+
+    .link-card span {
+      color: rgba(255,255,255,.5);
+      font-family: "Courier New", monospace;
+      font-size: .73rem;
+    }
+
+    /* FOOTER */
+
+    footer {
+      color: rgba(255,255,255,.57);
+      background: #090b15;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-inner {
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: .82rem;
+    }
+
+    .footer-inner strong {
+      color: white;
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TABLET */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .intro-grid,
+      .section-head,
+      .connect-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        min-height: auto;
+        padding: 72px 0;
+        gap: 50px;
+      }
+
+      .hero-card-wrap {
+        max-width: 520px;
+      }
+
+      .portrait-stack {
+        position: static;
+        max-width: 430px;
+      }
+
+      .work-card,
+      .work-card.wide {
+        grid-column: span 12;
+      }
+
+      .work-card.wide {
+        display: flex;
+      }
+
+      .wide .work-visual {
+        height: 320px;
+        min-height: 320px;
+        border-right: 0;
+        border-bottom: 2px solid var(--ink);
+      }
+
+      .archive-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-head {
+        gap: 20px;
+      }
+    }
+
+    /* PHONE */
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100% - 26px, var(--max));
+      }
+
+      .navlinks {
+        position: fixed;
+        top: 70px;
+        left: 13px;
+        right: 13px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        background: #111528;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 14px;
+        box-shadow: 0 18px 40px rgba(0,0,0,.25);
+        max-height: calc(100vh - 90px);
+        overflow-y: auto;
+      }
+
+      .navlinks.open {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.75rem, 15vw, 4.7rem);
+      }
+
+      .hero-actions {
+        gap: 10px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .sticker {
+        width: 84px;
+        height: 84px;
+        right: 0;
+        top: -20px;
+        font-size: .62rem;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .timeline::before {
+        left: 65px;
+      }
+
+      .year-row {
+        grid-template-columns: 65px 1fr;
+        gap: 24px;
+      }
+
+      .archive-grid,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .art-track img {
+        width: 160px;
+        height: 160px;
+      }
+
+      .project-panel-media {
+        height: 260px;
+        min-height: 260px;
+      }
+
+      .project-panel-media img {
+        padding: 18px;
+      }
+
+      .work-visual,
+      .wide .work-visual {
+        height: 250px;
+        min-height: 250px;
+      }
+
+      .work-visual img {
+        padding: 18px;
+      }
+
+      .gallery-frame iframe {
+        height: clamp(380px, 62vh, 520px);
+      }
+
+      .gallery-action .btn {
+        width: 100%;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 25px 0;
+      }
+    }
+
+    /* SMALL PHONES */
+
+    @media (max-width: 420px) {
+      .shell {
+        width: calc(100% - 22px);
+      }
+
+      .brand {
+        gap: 9px;
+      }
+
+      .brand img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .brand small {
+        font-size: .57rem;
+      }
+
+      .hero-grid {
+        padding: 58px 0 62px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.55rem, 14vw, 3.6rem);
+      }
+
+      .hero-card {
+        padding: 12px;
+        border-radius: 20px;
+      }
+
+      .hero-card figcaption {
+        font-size: .67rem;
+      }
+
+      .sticker {
+        width: 72px;
+        height: 72px;
+        font-size: .55rem;
+      }
+
+      .section-head h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      .project-panel-body,
+      .work-body,
+      .archive-card {
+        padding: 20px;
+      }
+
+      .project-panel-media {
+        height: 230px;
+        min-height: 230px;
+      }
+
+      .work-visual,
+      .wide .work-visual {
+        height: 220px;
+        min-height: 220px;
+      }
+
+      .timeline::before {
+        left: 54px;
+      }
+
+      .year-row {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .year {
+        font-size: .78rem;
+      }
+
+      .year-copy h3 {
+        font-size: 1.1rem;
+      }
+
+      .gallery-frame {
+        border-radius: 14px;
+      }
+
+      .gallery-frame iframe {
+        height: 380px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="shell nav">
+
+    <a aria-label="MoeR87 home" class="brand" href="#top">
+      <img
+        alt="MoeR87 pixel avatar"
+        decoding="async"
+        src="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa"
+      />
+      <span>
+        MoeR87
+        <small>Mohammadreza Eslami</small>
+      </span>
+    </a>
+
+    <nav aria-label="Main navigation" class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#now">Now</a>
+      <a href="#journey">Journey</a>
+      <a href="#work">Selected Work</a>
+      <a href="#archive">Background</a>
+      <a href="#gallery">Gallery</a>
+      <a class="nav-cta" href="#connect">Connect</a>
+    </nav>
+
+    <button
+      aria-expanded="false"
+      aria-label="Open menu"
+      class="menu-btn"
+      id="menuBtn"
+    >
+      ☰
+    </button>
+
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="shell hero-grid">
+
+      <div class="reveal">
+
+        <div class="eyebrow">
+          Independent creator since the early internet
+        </div>
+
+        <h1>
+          I build worlds
+          <span>one pixel</span>
+          at a time.
+        </h1>
+
+        <p class="hero-copy">
+          I’m Mohammadreza Eslami — MoeR87. An independent pixel artist,
+          animator and Web3 creator building original onchain collections,
+          digital experiences and creator-led products across Base,
+          Robinhood Chain and other networks.
+        </p>
+
+        <div class="hero-actions">
+          <a
+            class="btn primary"
+            href="https://basedmoer.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Enter Based Moer ↗
+          </a>
+
+          <a class="btn ghost" href="#journey">
+            Read my story
+          </a>
+
+          <a
+            class="btn ghost"
+            href="https://x.com/MoeeR87"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Follow on X ↗
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-card-wrap reveal">
+
+        <figure class="hero-card">
+
+          <img
+            alt="MoeR87 pixel art avatar"
+            decoding="async"
+            src="https://gateway.pinata.cloud/ipfs/bafkreiehi7q3huddexfvsdeqfnc7jzfcbgx3yue6klaho2lkcj7fgczkwa"
+          />
+
+          <figcaption>
+            <span>Pixel storyteller</span>
+            <span>Est. long before NFTs</span>
+          </figcaption>
+
+        </figure>
+
+        <div class="sticker">
+          ART<br/>
+          WEB3<br/>
+          BUILD<br/>
+          ONCHAIN
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TICKER -->
+
+  <div aria-hidden="true" class="ticker">
+    <div class="ticker-track">
+
+      <span>Pixel Artist</span>
+      <span>Animator</span>
+      <span>Web3 Creator</span>
+      <span>Polygon Ape Punks</span>
+      <span>Based Moer</span>
+      <span>Moerverse</span>
+      <span>Moe AI</span>
+      <span>H00DEXE</span>
+      <span>Robinhood Chain</span>
+
+      <span>Pixel Artist</span>
+      <span>Animator</span>
+      <span>Web3 Creator</span>
+      <span>Polygon Ape Punks</span>
+      <span>Based Moer</span>
+      <span>Moerverse</span>
+      <span>Moe AI</span>
+      <span>H00DEXE</span>
+      <span>Robinhood Chain</span>
+
+    </div>
+  </div>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+          <div class="eyebrow">About</div>
+          <h2>Artist-led. Web3 focused.</h2>
+        </div>
+
+        <p>
+          My work combines pixel art, animation and hands-on product building,
+          with a focus on original onchain projects and digital experiences.
+        </p>
+
+      </div>
+
+      <div class="intro-grid">
+
+        <div class="portrait-stack reveal">
+
+          <div class="portrait-frame">
+
+            <img
+              alt="MoeR87"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafkreiebgle5git3k2gw2paxo3rrpp2nturyf4qewmk3or63cfudsoqt4i"
+            />
+
+            <strong>MOE / MOER87</strong>
+
+          </div>
+
+        </div>
+
+        <div class="intro-copy reveal">
+
+          <p>
+            I’m Mohammadreza Eslami, known as <strong>MoeR87</strong> —
+            an independent pixel artist, animator and Web3 creator.
+            I entered blockchain in 2018 and began releasing my own NFT work
+            in 2022.
+          </p>
+
+          <p>
+            Since then, I’ve launched collections and collaborations across
+            multiple networks, including <strong>Polygon Ape Punks</strong>,
+            a 10,000-piece collection that sold out, while expanding my work
+            into community systems, websites and AI-assisted Web3 products.
+          </p>
+
+          <p>
+            My current focus is
+            <strong>Based Moer / Moerverse / Moe AI</strong> on Base,
+            alongside <strong>H00DEXE</strong> on Robinhood Chain.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CURRENT WORK -->
+
+  <section class="now" id="now">
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+          <div class="eyebrow">Current work</div>
+          <h2>Two active Web3 projects.</h2>
+        </div>
+
+        <p>
+          My current work is focused on the Based Moer ecosystem on Base
+          and H00DEXE on Robinhood Chain.
+        </p>
+
+      </div>
+
+      <div class="project-pair">
+
+        <!-- BASED MOER -->
+
+        <article class="project-panel reveal">
+
+          <div class="project-panel-media">
+
+            <img
+              alt="Based Moer artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4"
+            />
+
+          </div>
+
+          <div class="project-panel-body">
+
+            <div class="status">
+              Base
+            </div>
+
+            <h3>
+              Based Moer / Moerverse / Moe AI
+            </h3>
+
+            <p>
+              A creator-led pixel universe combining art, narrative,
+              identity and Web3 tools in one connected ecosystem.
+            </p>
+
+            <div class="project-facts">
+
+              <span class="project-fact">
+                Pixel universe
+              </span>
+
+              <span class="project-fact">
+                Moe AI
+              </span>
+
+              <span class="project-fact">
+                Base
+              </span>
+
+            </div>
+
+            <div class="hero-actions">
+
+              <a
+                class="btn light"
+                href="https://basedmoer.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Visit basedmoer.com ↗
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- H00DEXE -->
+
+        <article class="project-panel reveal">
+
+          <div class="project-panel-media">
+
+            <div
+              aria-label="Live preview of hoodexe.com"
+              class="site-preview"
+            >
+
+              <iframe
+                loading="lazy"
+                src="https://www.hoodexe.com/"
+                tabindex="-1"
+                title="H00DEXE official website preview"
+              ></iframe>
+
+              <div class="site-preview-bar">
+
+                <span class="site-preview-dot"></span>
+                <span class="site-preview-dot"></span>
+                <span class="site-preview-dot"></span>
+
+                <span>
+                  hoodexe.com — official live preview
+                </span>
+
+              </div>
+
+              <div class="preview-fallback">
+                <span>
+                  Official site preview · opens fully via button below
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="project-panel-body">
+
+            <div class="status">
+              Robinhood Chain
+            </div>
+
+            <h3>
+              H00DEXE
+            </h3>
+
+            <p>
+              A browser OS built for Robinhood Chain, bringing six AI agents
+              together through a single wallet-centered experience.
+            </p>
+
+            <div class="project-facts">
+
+              <span class="project-fact">
+                Browser OS
+              </span>
+
+              <span class="project-fact">
+                6 AI agents
+              </span>
+
+              <span class="project-fact">
+                One wallet
+              </span>
+
+              <span class="project-fact">
+                Robinhood Chain
+              </span>
+
+            </div>
+
+            <div class="hero-actions">
+
+              <a
+                class="btn light"
+                href="https://www.hoodexe.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Open H00DEXE ↗
+              </a>
+
+              <a
+                class="btn ghost"
+                href="https://x.com/h00dexe"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                @h00dexe ↗
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- JOURNEY -->
+
+  <section id="journey">
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+          <div class="eyebrow">
+            Journey
+          </div>
+
+          <h2>
+            From pencil lines to persistent worlds.
+          </h2>
+        </div>
+
+        <p>
+          This is the short version of a much longer path — the moments
+          that changed what I made, how I worked, and what I believed
+          digital ownership could become.
+        </p>
+
+      </div>
+
+      <div class="timeline reveal">
+
+        <div class="year-row">
+
+          <div class="year">
+            Childhood
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Drawing first
+            </h3>
+
+            <p>
+              Years of anatomy sketches and hand drawing built my
+              foundation in form, proportion and movement.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2000s
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Music journey
+            </h3>
+
+            <p>
+              Independent music and digital publishing were part of my
+              early creative work before Web3.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2018
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Blockchain discovery
+            </h3>
+
+            <p>
+              I became interested in ownership and persistence —
+              digital objects existing beyond the platform that created them.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2020
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              NFTs through games
+            </h3>
+
+            <p>
+              My first real NFT experience came from blockchain games and
+              Enjin assets: collecting, trading and using digital objects
+              as functional game items.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2022
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Pixel artist onchain
+            </h3>
+
+            <p>
+              I moved from collecting to creating, taught myself animation
+              and released Famous Pixel Dogs alongside one-off works
+              and experiments.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2023
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Polygon Ape Punks
+            </h3>
+
+            <p>
+              Created and launched a 10,000-piece Polygon collection that
+              sold out, while also contributing animated pixel work to
+              projects such as The Herd.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2024–25
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              Multi-chain experiments
+            </h3>
+
+            <p>
+              Continued releasing and testing work across Ethereum,
+              Polygon, Solana, Monad, Base and emerging testnets —
+              including collections, free drops and experimental deployments.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="year-row">
+
+          <div class="year">
+            2025–26
+          </div>
+
+          <div class="year-copy">
+
+            <h3>
+              From collections to ecosystems
+            </h3>
+
+            <p>
+              Based Moer expanded into the Moerverse and Moe AI on Base,
+              while my current work also extended to H00DEXE
+              on Robinhood Chain.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SELECTED WORK -->
+
+  <section class="works" id="work">
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+
+          <div class="eyebrow">
+            Selected work
+          </div>
+
+          <h2>
+            A few chapters worth knowing.
+          </h2>
+
+        </div>
+
+        <p>
+          Not everything I have made is still an active project.
+          This section separates current work from important earlier
+          chapters instead of pretending every old experiment
+          is still “coming soon.”
+        </p>
+
+      </div>
+
+
+      <div class="work-grid">
+
+        <!-- BASED MOER -->
+
+        <a
+          class="work-card wide reveal"
+          href="https://basedmoer.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <div class="work-visual">
+
+            <img
+              alt="Based Moer pixel artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4"
+            />
+
+          </div>
+
+          <div class="work-body">
+
+            <div class="eyebrow">
+              Current / Base
+            </div>
+
+            <h3>
+              Based Moer + Moerverse
+            </h3>
+
+            <p>
+              My current creator-owned universe: pixel art, characters,
+              story, community progression and the product layer around
+              Moe AI. It is the place where most of my earlier interests
+              finally meet.
+            </p>
+
+            <div class="tagrow">
+
+              <span class="tag">
+                Pixel Art
+              </span>
+
+              <span class="tag">
+                Base
+              </span>
+
+              <span class="tag">
+                Worldbuilding
+              </span>
+
+              <span class="tag">
+                AI Tools
+              </span>
+
+              <span class="tag">
+                Community
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- POLYGON APE PUNKS -->
+
+        <a
+          class="work-card reveal"
+          href="https://opensea.io/collection/polygon-ape-punks-club"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <div class="work-visual">
+
+            <img
+              alt="Polygon Ape Punks artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafkreidxgjyiljl6qsasrqzb37rycfxmxho26pg5k5yxarplgioruy5hdq"
+            />
+
+          </div>
+
+          <div class="work-body">
+
+            <div class="eyebrow">
+              2023 / Polygon
+            </div>
+
+            <h3>
+              Polygon Ape Punks
+            </h3>
+
+            <p>
+              A 10,000-piece Polygon NFT collection launched in 2023 and
+              sold out, expanding my work from individual releases into
+              collection, community and launch operations.
+            </p>
+
+            <div class="tagrow">
+
+              <span class="tag">
+                10,000
+              </span>
+
+              <span class="tag">
+                Sold Out
+              </span>
+
+              <span class="tag">
+                Founder
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- FAMOUS PIXEL DOGS -->
+
+        <a
+          class="work-card reveal"
+          href="https://opensea.io/collection/famouspixeldogs"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <div class="work-visual">
+
+            <img
+              alt="Famous Pixel Dogs artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafybeigq65kclpl6wysx4fjktc2w46zzboar3ttzpddedgee5drmyquut4"
+            />
+
+          </div>
+
+          <div class="work-body">
+
+            <div class="eyebrow">
+              2022 / Early NFT work
+            </div>
+
+            <h3>
+              Famous Pixel Dogs
+            </h3>
+
+            <p>
+              One of my earliest hand-drawn animated pixel collections and
+              an important step in establishing my onchain art practice.
+            </p>
+
+            <div class="tagrow">
+
+              <span class="tag">
+                Animation
+              </span>
+
+              <span class="tag">
+                Pixel Art
+              </span>
+
+              <span class="tag">
+                NFT
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- THE HERD -->
+
+        <a
+          class="work-card reveal"
+          href="https://opensea.io/collection/the-herd-4"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <div class="work-visual">
+
+            <img
+              alt="The Herd artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafkreieuqf744hglrvquy56thkq2vypxnfuy3ac3aktzpllh2bxf7q6t3y"
+            />
+
+          </div>
+
+          <div class="work-body">
+
+            <div class="eyebrow">
+              Collaboration
+            </div>
+
+            <h3>
+              The Herd / Iced Out Coin Flip
+            </h3>
+
+            <p>
+              Pixel-art contributions for an interchangeable-art smart
+              contract, turning existing 2D works into animated pixel
+              versions holders could switch between.
+            </p>
+
+            <div class="tagrow">
+
+              <span class="tag">
+                Collab
+              </span>
+
+              <span class="tag">
+                Animated Art
+              </span>
+
+              <span class="tag">
+                Polygon
+              </span>
+
+            </div>
+
+          </div>
+
+        </a>
+
+
+        <!-- MULTI-CHAIN EXPERIMENTS -->
+
+        <div
+          aria-label="Multi-chain experiments"
+          class="work-card reveal"
+          role="article"
+        >
+
+          <div class="work-visual">
+
+            <img
+              alt="MegaPython artwork"
+              decoding="async"
+              loading="lazy"
+              src="https://gateway.pinata.cloud/ipfs/bafkreidetdkpo52f6hri32qfyqddoy46kncd3vt36mvclkgmzqizoqcjei"
+            />
+
+          </div>
+
+          <div class="work-body">
+
+            <div class="eyebrow">
+              Experiments
+            </div>
+
+            <h3>
+              Testnets + multi-chain releases
+            </h3>
+
+            <p>
+              MegaPython, Beacon of the Deep, Monad drops and other
+              experiments helped me test new chains, marketplaces and
+              release formats without turning each experiment into a
+              permanent brand.
+            </p>
+
+            <div class="tagrow">
+
+              <span class="tag">
+                MegaETH
+              </span>
+
+              <span class="tag">
+                Monad
+              </span>
+
+              <span class="tag">
+                Testnets
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ART STRIP -->
+
+  <section
+    aria-label="Selected pixel artwork"
+    class="art-strip"
+  >
+
+    <div
+      class="art-track"
+      id="artTrack"
+    ></div>
+
+  </section>
+
+
+  <!-- BACKGROUND -->
+
+  <section id="archive">
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+
+          <div class="eyebrow">
+            Background
+          </div>
+
+          <h2>
+            Creative disciplines behind the work.
+          </h2>
+
+        </div>
+
+        <p>
+          A concise look at the creative and technical influences
+          that continue to shape how I approach Web3 projects.
+        </p>
+
+      </div>
+
+
+      <div class="archive-grid">
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Music
+          </div>
+
+          <h3>
+            Music journey
+          </h3>
+
+          <p>
+            Earlier independent music work continues to influence rhythm,
+            pacing and presentation in my visual projects.
+          </p>
+
+        </article>
+
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Games
+          </div>
+
+          <h3>
+            MMORPG mindset
+          </h3>
+
+          <p>
+            Persistent worlds, evolving characters, player economies and
+            identity systems continue to influence how I think about
+            digital communities.
+          </p>
+
+        </article>
+
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Art
+          </div>
+
+          <h3>
+            Hand-drawn first
+          </h3>
+
+          <p>
+            Years of anatomy sketching came before digital art.
+            Pixel work still follows the same rule: every mark should have
+            a reason to exist.
+          </p>
+
+        </article>
+
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Animation
+          </div>
+
+          <h3>
+            Pixels in motion
+          </h3>
+
+          <p>
+            I moved naturally from static pixel art into hand-built
+            animation, especially for collections, character pieces
+            and storytelling.
+          </p>
+
+        </article>
+
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Web3
+          </div>
+
+          <h3>
+            Ownership over hype
+          </h3>
+
+          <p>
+            What interested me in blockchain was always the possibility
+            of persistent digital objects and creator-owned systems,
+            not speculation alone.
+          </p>
+
+        </article>
+
+
+        <article class="archive-card reveal">
+
+          <div class="eyebrow">
+            Building
+          </div>
+
+          <h3>
+            Artist-first execution
+          </h3>
+
+          <p>
+            I use modern tools and AI to help turn ideas into functioning
+            sites and products, while keeping the visual identity, rules
+            and creative direction my own.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ONCYBER — ONLY ONCE -->
+
+  <section
+    class="gallery-section"
+    id="gallery"
+  >
+
+    <div class="shell">
+
+      <div class="section-head reveal">
+
+        <div>
+
+          <div class="eyebrow">
+            OnCyber gallery
+          </div>
+
+          <h2>
+            Explore the art in 3D.
+          </h2>
+
+        </div>
+
+        <p>
+          A live preview of my OnCyber gallery, bringing together
+          selected work from different stages of my pixel-art journey.
+        </p>
+
+      </div>
+
+
+      <div class="gallery-frame reveal">
+
+        <iframe
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+          src="https://oncyber.io/moegallery"
+          title="MoeR87 OnCyber Gallery"
+        ></iframe>
+
+      </div>
+
+
+      <div class="gallery-action reveal">
+
+        <a
+          class="btn dark"
+          href="https://oncyber.io/moegallery"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Open OnCyber Gallery ↗
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONNECT -->
+
+  <section
+    class="connect"
+    id="connect"
+  >
+
+    <div class="shell connect-grid">
+
+      <div class="reveal">
+
+        <div class="eyebrow">
+          Connect
+        </div>
+
+        <h2>
+          Follow the work, not the noise.
+        </h2>
+
+        <p>
+          Explore my current Web3 projects and personal updates
+          through the links below.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="btn primary"
+            href="https://basedmoer.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            basedmoer.com ↗
+          </a>
+
+          <a
+            class="btn light"
+            href="https://www.hoodexe.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            H00DEXE ↗
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="link-grid reveal">
+
+        <a
+          class="link-card"
+          href="https://x.com/MoeeR87"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <strong>
+            X / @MoeeR87
+          </strong>
+
+          <span>
+            Personal updates ↗
+          </span>
+
+        </a>
+
+
+        <a
+          class="link-card"
+          href="https://linktr.ee/MoeR87"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <strong>
+            Linktree / MoeR87
+          </strong>
+
+          <span>
+            Personal link archive ↗
+          </span>
+
+        </a>
+
+
+        <a
+          class="link-card"
+          href="https://x.com/h00dexe"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+
+          <strong>
+            H00DEXE / @h00dexe
+          </strong>
+
+          <span>
+            Robinhood Chain project updates ↗
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="shell footer-inner">
+
+    <div>
+      <strong>MoeR87</strong>
+      — Mohammadreza Eslami
+    </div>
+
+    <div>
+      © <span id="year"></span>
+      · Built independently, one pixel at a time.
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+    const art = [
+
+      'bafkreiepqzjkki4vmmaz7h2qdbhvqztlc4cqvs2o2ddlcsb6u3cidl3vx4',
+
+      'bafkreig4aqxu34kehpidyaay3to63z2wmkbpbrzb57yvijbs65kgxfaifu',
+
+      'bafkreibi277kh6uf4toqlapq3elv4lfe3drtaxbm7hgig3luqp4jdpbqm4',
+
+      'bafkreibxawbxqcfftxpeqvi2iu6jpyb3wtbcvgyvg6lybvbru3jdpvt5la',
+
+      'bafkreibbisckvxoomksesel2kx6yu3on3enj5hl7tmznz6fn7o4pcmbbiu',
+
+      'bafkreidnkc4nugckh7y2vje4ugq5aaluqsycib5iu6sjk3w2u3m2wftxxe',
+
+      'bafkreifxnn5nin3ai7vs5o7jzsghmlvn2bk42meggdndz522llqosxm2ee',
+
+      'bafkreigrh7wdaqhsr5xv3lwvmu6bmt23v6pjn7q6wtszpn3m642vu2krlm',
+
+      'bafkreiegzsvxqhbw73kfnf4vus6qs3za3ka4bj2ai2p5vznnwibb637swe',
+
+      'bafybeigwlza6tmz36zfjoozwjs4xypq2qw6w6dz6aemqre2pr2ykp3ujtu',
+
+      'bafkreidlhtakzaeyciwxmtfxwog6ve5qv4q5odwa54kqni5d2zxbaldvjy',
+
+      'bafkreiedasx3jz4eoppshoftmk6o3afkt5vnevnlas3rod6v2ikrf6u7xe',
+
+      'bafkreicymsqef4afympwpfsczck66c62w235ijruwmirgxlp52e33ssb7e'
+
+    ];
+
+
+    const track = document.getElementById('artTrack');
+
+
+    [...art, ...art].forEach((cid, index) => {
+
+      const img = document.createElement('img');
+
+      img.src =
+        'https://gateway.pinata.cloud/ipfs/' + cid;
+
+      img.alt =
+        index < art.length
+          ? 'Selected MoeR87 pixel artwork'
+          : '';
+
+      img.loading = 'lazy';
+
+      img.decoding = 'async';
+
+      track.appendChild(img);
+
+    });
+
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add('visible');
+
+              observer.unobserve(entry.target);
+
             }
-            return array;
+
+          });
+
+        },
+
+        {
+          threshold: .08,
+          rootMargin: '0px 0px -30px 0px'
         }
-        
-        // Create infinite scrolling slider
-        function initializeSlider() {
-            // Shuffle the images
-            const shuffled = shuffleArray([...images]);
-            
-            // Duplicate the shuffled array for infinite scroll effect
-            const doubled = [...shuffled, ...shuffled];
-            
-            // Create slider items
-            doubled.forEach(cid => {
-                const sliderItem = document.createElement('div');
-                sliderItem.className = 'slider-item';
-                
-                const img = document.createElement('img');
-                img.src = `https://gateway.pinata.cloud/ipfs/${cid}`;
-                img.alt = "MoeR87 Pixel Art";
-                img.loading = "lazy";
-                
-                sliderItem.appendChild(img);
-                slider.appendChild(sliderItem);
-            });
-        }
-        
-        // Intersection Observer for fade-in animations
-        function setupIntersectionObserver() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            // Observe all elements with fade-in class
-            document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        
-        // Back to top button visibility
-        function setupBackToTop() {
-            const backToTopBtn = document.getElementById('backToTop');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            });
-        }
-        
-        // Mobile menu toggle
-        function setupMobileMenu() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-            
-            // Close menu when clicking a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        }
-        
-        // Add hover effect to cards
-        function enhanceCards() {
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-10px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-        }
-        
-        // Force all external links to open in new tab (safety measure)
-        function setupExternalLinks() {
-            document.querySelectorAll('a').forEach(link => {
-                if (link.hostname !== window.location.hostname && !link.href.startsWith('#')) {
-                    link.setAttribute('target', '_blank');
-                    link.setAttribute('rel', 'noopener noreferrer');
-                }
-            });
-        }
-        
-        // Add pixel effect to text on hover
-        function addPixelTextEffects() {
-            document.querySelectorAll('.pixel-text').forEach(text => {
-                text.addEventListener('mouseenter', function() {
-                    this.style.textShadow = '0 0 15px rgba(0,240,200,0.5)';
-                });
-                
-                text.addEventListener('mouseleave', function() {
-                    this.style.textShadow = '0 0 10px rgba(0,240,200,0.3)';
-                });
-            });
-        }
-        
-        // Pause slider animation on hover
-        function setupSliderHover() {
-            const sliderWrapper = document.querySelector('.slider-wrapper');
-            sliderWrapper.addEventListener('mouseenter', () => {
-                sliderWrapper.style.animationPlayState = 'paused';
-            });
-            
-            sliderWrapper.addEventListener('mouseleave', () => {
-                sliderWrapper.style.animationPlayState = 'running';
-            });
-        }
-        
-        // Preload images for better performance
-        function preloadImages() {
-            const imageUrls = [
-                'https://gateway.pinata.cloud/ipfs/bafybeiedherv3vhbs5qremsrp5zbas7vvgc3o7eqlzjwvy67f45esnzfy4',
-                'https://gateway.pinata.cloud/ipfs/bafybeighcgjocs6kewtvwd6nxbmc5x3ptqtx24bnxew736g2f3elbymgza',
-                'https://gateway.pinata.cloud/ipfs/bafkreicxkvxp4nafllca3msp2a7r6r6ph2ct25kzk74qev7nc5qfhafeli',
-                'https://gateway.pinata.cloud/ipfs/bafybeigq65kclpl6wysx4fjktc2w46zzboar3ttzpddedgee5drmyquut4',
-                'https://gateway.pinata.cloud/ipfs/bafkreidxgjyiljl6qsasrqzb37rycfxmxho26pg5k5yxarplgioruy5hdq',
-                'https://gateway.pinata.cloud/ipfs/bafkreieuqf744hglrvquy56thkq2vypxnfuy3ac3aktzpllh2bxf7q6t3y',
-                'https://gateway.pinata.cloud/ipfs/bafkreidetdkpo52f6hri32qfyqddoy46kncd3vt36mvclkgmzqizoqcjei'
-            ];
-            
-            imageUrls.forEach(url => {
-                const img = new Image();
-                img.src = url;
-            });
-        }
-        
-        // Initialize everything when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeSlider();
-            setupIntersectionObserver();
-            setupBackToTop();
-            setupMobileMenu();
-            enhanceCards();
-            setupExternalLinks();
-            addPixelTextEffects();
-            setupSliderHover();
-            preloadImages();
-            
-            // Set page title with pixel art effect
-            document.title = "MoeR87 — Pixel Storyteller";
-        });
-        
-        // Handle window resize for better mobile experience
-        window.addEventListener('resize', () => {
-            // Close mobile menu on resize to desktop
-            if (window.innerWidth > 768) {
-                const navLinks = document.getElementById('navLinks');
-                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-                navLinks.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-        });
-    </script>
+
+      );
+
+
+    document
+      .querySelectorAll('.reveal')
+      .forEach((el) => observer.observe(el));
+
+
+    const menuBtn =
+      document.getElementById('menuBtn');
+
+    const navlinks =
+      document.getElementById('navlinks');
+
+
+    menuBtn.addEventListener('click', () => {
+
+      const open =
+        navlinks.classList.toggle('open');
+
+      menuBtn.setAttribute(
+        'aria-expanded',
+        String(open)
+      );
+
+      menuBtn.textContent =
+        open ? '×' : '☰';
+
+    });
+
+
+    navlinks
+      .querySelectorAll('a')
+      .forEach((link) => {
+
+        link.addEventListener(
+          'click',
+          () => {
+
+            navlinks.classList.remove('open');
+
+            menuBtn.setAttribute(
+              'aria-expanded',
+              'false'
+            );
+
+            menuBtn.textContent =
+              '☰';
+
+          }
+        );
+
+      });
+
+
+    document
+      .getElementById('year')
+      .textContent =
+        new Date().getFullYear();
+
+</script>
+
 </body>
 </html>
